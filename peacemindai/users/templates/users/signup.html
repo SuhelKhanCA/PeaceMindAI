@@ -1,0 +1,40 @@
+{% extends 'base.html' %} {% block title %}
+<title>Signup - PMI</title>
+{% endblock %} {% block content %}
+{% load widget_tweaks %}
+
+<form class="row g-3" method="POST">
+  {% csrf_token %}
+  <div class="col-md-12">
+    {{form.email.as_field_group}}
+  </div> 
+  <div class="col-md-6">
+    {{form.first_name.as_field_group}}
+  </div> 
+  <div class="col-md-6">
+    {{form.last_name.as_field_group}}
+  </div> 
+  <div class="col-md-2">
+    {{form.dob.label_tag}}
+    {% if field.errors %}
+        {{field | add_class:"form-control is-invalid"}}
+        <div class="invalid-feedback">
+          {{field.errors}}
+        </div>
+        {% else %}
+        <input type="date" class="form-control" name="dob" id={{form.dob.id_for_label}}>
+    {% endif %}
+      
+  </div> 
+  <div class="col-md-5">
+    {{form.password1.as_field_group}}
+  </div> 
+  <div class="col-md-5">
+    {{form.password2.as_field_group}}
+  </div> 
+  <div class="text-center">
+    <button type="submit" class="btn btn-primary w-25 center">Submit</button>
+  </div>
+</form>
+
+{% endblock %}
