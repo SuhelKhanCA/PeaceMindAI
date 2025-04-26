@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+import os
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -31,7 +33,9 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'jet',
     'users',
+    'main_app',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -51,11 +55,12 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'peacemindai.urls'
+AUTH_USER_MODEL='users.User'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -66,6 +71,9 @@ TEMPLATES = [
         },
     },
 ]
+
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 WSGI_APPLICATION = 'peacemindai.wsgi.application'
 
@@ -121,3 +129,34 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+JET_DEFAULT_THEME = 'light-gray'
+JET_SIDE_MENU_COMPACT = True
+JET_THEMES = [
+    {
+        'theme' : 'default',
+        'color' : '#47bac1',
+        'title' : 'default',
+    },
+    {
+        'theme' : 'green',
+        'color' : '#44b78b',
+        'title' : 'Green',
+    },
+    {
+        'theme' : 'violet',
+        'color' : '#44b',
+        'title' : 'Violet',
+    },
+    {
+        'theme' : 'light-blue',
+        'color' : '#5eadde',
+        'title' : 'Light-Blue',
+    },
+    {
+        'theme' : 'light-gray',
+        'color' : '#222',
+        'title' : 'Light-gray',
+    },
+]
