@@ -1,13 +1,52 @@
-{% extends 'base.html' %} {% block title %}
-<title>Login - PMI</title>
-{% endblock %} {% block content %}
+{% extends 'base.html' %}
+{% block title %}
+<title>Login - PeaceMindAI</title>
+{% endblock %}
 
-<form method="POST">
-  {% csrf_token %} 
-  
-  {{form}}
+{% block content %}
+{% load widget_tweaks %}
 
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+<section class="py-16">
+  <div class="container mt-16 mx-auto px-4">
+    <div class="max-w-xl mx-auto bg-white shadow-lg rounded-lg p-8 hover:shadow-xl transition-shadow duration-200 border border-accent/20">
+      <h2 class="text-3xl font-bold text-primary mb-8 text-center">Welcome Back</h2>
+      
+      <form class="space-y-6" method="POST">
+        {% csrf_token %}
+        
+        <div class="space-y-4">
+          <div>
+            <label for="{{ form.username.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+            {% render_field form.email class="block w-full px-4 py-3 rounded-md border-gray-300 focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50 shadow-sm transition duration-150 ease-in-out" placeholder="Enter your email" %}
+            {% if form.username.errors %}
+              <div class="text-red-500 text-sm mt-1">{{ form.username.errors }}</div>
+            {% endif %}
+          </div>
+          
+          <div>
+            <label for="{{ form.password.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+            {% render_field form.password class="block w-full px-4 py-3 rounded-md border-gray-300 focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50 shadow-sm transition duration-150 ease-in-out" placeholder="Enter your password" %}
+            {% if form.password.errors %}
+              <div class="text-red-500 text-sm mt-1">{{ form.password.errors }}</div>
+            {% endif %}
+          </div>
+        </div>
 
+        <div class="text-center mt-8">
+          <button type="submit" 
+            class="max-w-md mx-auto bg-primary text-white px-5 py-2.5 rounded-md hover:bg-secondary transform hover:-translate-y-0.5 transition-all duration-150 font-medium shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50">
+            Sign In
+          </button>
+        </div>
+        
+        <p class="text-center text-gray-600 mt-6">
+          Don't have an account? 
+          <a href="{% url 'signup' %}" class="text-primary hover:text-secondary transition-colors duration-200 font-medium">
+            Create one now
+          </a>
+        </p>
+      </form>
+    </div>
+  </div>
+</section>
 {% endblock %}

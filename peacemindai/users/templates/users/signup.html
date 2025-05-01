@@ -1,40 +1,97 @@
-{% extends 'base.html' %} {% block title %}
-<title>Signup - PMI</title>
-{% endblock %} {% block content %}
+{% extends 'base.html' %}
+{% block title %}
+<title>Signup - PeaceMindAI</title>
+{% endblock %}
+
+{% block content %}
 {% load widget_tweaks %}
 
-<form class="row g-3" method="POST">
-  {% csrf_token %}
-  <div class="col-md-12">
-    {{form.email.as_field_group}}
-  </div> 
-  <div class="col-md-6">
-    {{form.first_name.as_field_group}}
-  </div> 
-  <div class="col-md-6">
-    {{form.last_name.as_field_group}}
-  </div> 
-  <div class="col-md-2">
-    {{form.dob.label_tag}}
-    {% if field.errors %}
-        {{field | add_class:"form-control is-invalid"}}
-        <div class="invalid-feedback">
-          {{field.errors}}
-        </div>
-        {% else %}
-        <input type="date" class="form-control" name="dob" id={{form.dob.id_for_label}}>
-    {% endif %}
+<section class="py-16">
+  <div class="container mt-16 mx-auto px-4">
+    <div class="max-w-2xl mx-auto bg-white shadow-lg rounded-lg p-8 hover:shadow-xl transition-shadow duration-200 border border-accent/20">
+      <h2 class="text-3xl font-bold text-primary mb-8 text-center">Create Your Account</h2>
       
-  </div> 
-  <div class="col-md-5">
-    {{form.password1.as_field_group}}
-  </div> 
-  <div class="col-md-5">
-    {{form.password2.as_field_group}}
-  </div> 
-  <div class="text-center">
-    <button type="submit" class="btn btn-primary w-25 center">Submit</button>
-  </div>
-</form>
+      <form class="space-y-6" method="POST">
+        {% csrf_token %}
+        
+        <div class="grid grid-cols-1 gap-6">
+          <div class="col-span-1">
+            <div class="relative">
+              <label for="{{ form.email.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+              {% render_field form.email class="block w-full px-4 py-3 rounded-md border-gray-300 focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50 shadow-sm transition duration-150 ease-in-out" placeholder="Enter your email" %}
+              {% if form.email.errors %}
+                <div class="text-red-500 text-sm mt-1">{{ form.email.errors }}</div>
+              {% endif %}
+            </div>
+          </div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label for="{{ form.first_name.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">First Name</label>
+              {% render_field form.first_name class="block w-full px-4 py-3 rounded-md border-gray-300 focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50 shadow-sm transition duration-150 ease-in-out" placeholder="Enter your first name" %}
+              {% if form.first_name.errors %}
+                <div class="text-red-500 text-sm mt-1">{{ form.first_name.errors }}</div>
+              {% endif %}
+            </div>
+            <div>
+              <label for="{{ form.last_name.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
+              {% render_field form.last_name class="block w-full px-4 py-3 rounded-md border-gray-300 focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50 shadow-sm transition duration-150 ease-in-out" placeholder="Enter your last name" %}
+              {% if form.last_name.errors %}
+                <div class="text-red-500 text-sm mt-1">{{ form.last_name.errors }}</div>
+              {% endif %}
+            </div>
+          </div>
+          
+          <div class="w-full">
+            <label for="{{ form.dob.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">Date of Birth</label>
+            <input type="date" name="dob" id="{{ form.dob.id_for_label }}" 
+              class="block w-full px-4 py-3 rounded-md border-gray-300 focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50 shadow-sm transition duration-150 ease-in-out">
+            {% if form.dob.errors %}
+              <div class="text-red-500 text-sm mt-1">{{ form.dob.errors }}</div>
+            {% endif %}
+          </div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label for="{{ form.password1.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+              {% render_field form.password1 class="block w-full px-4 py-3 rounded-md border-gray-300 focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50 shadow-sm transition duration-150 ease-in-out" placeholder="Create a password" %}
+              {% if form.password1.errors %}
+                <div class="text-red-500 text-sm mt-1">{{ form.password1.errors }}</div>
+              {% endif %}
+            </div>
+            <div>
+              <label for="{{ form.password2.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">Confirm Password</label>
+              {% render_field form.password2 class="block w-full px-4 py-3 rounded-md border-gray-300 focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50 shadow-sm transition duration-150 ease-in-out" placeholder="Confirm your password" %}
+              {% if form.password2.errors %}
+                <div class="text-red-500 text-sm mt-1">{{ form.password2.errors }}</div>
+              {% endif %}
+            </div>
+          </div>
+          
+          {% if form.password1.help_text %}
+            <div class="flex justify-center w-full col-span-full">
+              <div class="w-full max-w-xl mt-4 p-4 bg-gray-50 rounded-lg shadow-sm border border-gray-200">
+                <div class="text-gray-600 text-sm text-center">{{ form.password1.help_text }}</div>
+              </div>
+            </div>
+          {% endif %}
+        </div>
 
+        <div class="text-center mt-8">
+          <button type="submit" 
+            class="max-w-md mx-auto bg-primary text-white px-5 py-2.5 rounded-md hover:bg-secondary transform hover:-translate-y-0.5 transition-all duration-150 font-medium shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50">
+            Create Account
+          </button>
+        </div>
+        
+        <p class="text-center text-gray-600 mt-6">
+          Already have an account? 
+          <a href="{% url 'login' %}" class="text-primary hover:text-secondary transition-colors duration-200 font-medium">
+            Sign in
+          </a>
+        </p>
+      </form>
+    </div>
+  </div>
+</section>
 {% endblock %}

@@ -1,14 +1,39 @@
-{% extends 'base.html' %} {% block title %}
-<title>Update - PMI</title>
-{% endblock %} {% block content %}
+{% extends 'base.html' %} 
+{% load widget_tweaks %}
+{% block title %}
+<title>Update Profile - PeaceMindAI</title>
+{% endblock %} 
 
-<form method="POST">
-    <h2>Update Account</h2>
-  {% csrf_token %} 
-  
-  {{form}}
-  
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
-
+{% block content %}
+<div class="min-h-screen pt-16 pb-12 flex flex-col bg-gray-50">
+    <div class="container mx-auto px-4 py-8">
+        <div class="max-w-md mx-auto bg-white rounded-lg shadow-lg p-8">
+            <h2 class="text-3xl font-bold text-primary mb-6 text-center">Update Profile</h2>
+            
+            <form method="POST" class="space-y-6">
+                {% csrf_token %}
+                
+                {% for field in form %}
+                <div class="space-y-2">
+                    <label for="{{ field.id_for_label }}" class="block text-sm font-medium text-gray-700">
+                        {{ field.label }}
+                    </label>
+                    {% render_field field class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" %}
+                    {% if field.errors %}
+                        {% for error in field.errors %}
+                            <p class="text-red-500 text-xs mt-1">{{ error }}</p>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                {% endfor %}
+                
+                <div class="flex justify-center mt-8">
+                    <button type="submit" class="inline-block bg-primary text-white px-8 py-3 rounded-lg hover:bg-secondary transition-colors duration-200">
+                        Update Profile
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 {% endblock %}
