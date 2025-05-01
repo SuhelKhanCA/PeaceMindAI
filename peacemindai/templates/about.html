@@ -1,29 +1,61 @@
-{% extends 'base.html' %}
-
-{% block title %}
+{% extends 'base.html' %} {% block title %}
 <title>PeaceMindAI | About</title>
-{% endblock %}
+{% endblock %} {% block content %}
+<section class="bg-highlight py-16">
+  <div class="container mt-6 mx-auto px-4 text-center">
+    <h1 class="text-3xl font-bold text-primary mb-8">About PeaceMindAI</h1>
 
-{% block content %}
-<section>
-  <h1>About PeaceMindAI</h1>
+    <div class="bg-white rounded-lg shadow-lg p-8">
+      <p class="text-gray-700 mb-6">
+        PeaceMindAI is an AI-powered mental health support platform designed to
+        offer accessible, personalized, and stigma-free emotional care. Built
+        around an advanced Large Language Model (LLM) chatbot, our system helps
+        individuals manage stress, anxiety, depression, and PTSD through
+        meaningful conversations, cognitive behavioral therapy techniques,
+        mindfulness practices, and supportive counseling.
+      </p>
 
-  <p>
-    PeaceMindAI is an AI-powered mental health support platform designed to offer accessible, personalized, and stigma-free emotional care. 
-    Built around an advanced Large Language Model (LLM) chatbot, our system helps individuals manage stress, anxiety, depression, and PTSD through meaningful conversations, cognitive behavioral therapy techniques, mindfulness practices, and supportive counseling.
-  </p>
+      <div class="border-l-4 border-accent pl-6 my-8 bg-gray-50 p-4">
+        <p class="text-primary italic">
+          "Our mission is to make mental health support accessible to everyone,
+          anywhere, anytime."
+        </p>
+      </div>
 
-  <p>
-    With 24/7 availability and real-time interaction, PeaceMindAI ensures that help is always within reach, especially for people with limited access to traditional therapy. 
-    Our chatbot serves as a first line of support, providing guidance, suggesting self-help resources, and encouraging mental well-being while protecting user privacy and confidentiality.
-  </p>
+      <p class="text-gray-700 mb-6">
+        With 24/7 availability and real-time interaction, PeaceMindAI ensures
+        that help is always within reach, especially for people with limited
+        access to traditional therapy. Our chatbot serves as a first line of
+        support, providing guidance, suggesting self-help resources, and
+        encouraging mental well-being while protecting user privacy and
+        confidentiality.
+      </p>
 
-  <p>
-    In addition to conversational support, PeaceMindAI offers curated mental health resources uploaded by professionals, including self-help articles, mindfulness exercises, and therapy guides to complement the AI-driven care.
-  </p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 my-8">
+        <div class="bg-secondary text-white p-6 rounded-lg">
+          <h3 class="text-xl font-semibold mb-4">Our Approach</h3>
+          <p>
+            We combine artificial intelligence with evidence-based therapeutic
+            techniques to provide personalized mental health support that
+            evolves with your needs.
+          </p>
+        </div>
+        <div class="bg-primary text-white p-6 rounded-lg">
+          <h3 class="text-xl font-semibold mb-4">Your Privacy</h3>
+          <p>
+            Your confidentiality is our priority. All conversations are private,
+            secure, and protected by advanced encryption.
+          </p>
+        </div>
+      </div>
 
-  <p>
-    PeaceMindAI is not a replacement for human therapists but a companion that bridges the gap, empowers users, and promotes emotional resilience in today’s fast-paced world.
-  </p>
+      <p class="text-gray-700 mb-6">
+        In addition to conversational support, PeaceMindAI offers curated mental
+        health resources uploaded by professionals, including self-help
+        articles, mindfulness exercises, and therapy guides to complement the
+        AI-driven care.
+      </p>
+    </div>
+  </div>
 </section>
 {% endblock %}
