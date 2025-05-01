@@ -33,9 +33,13 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'tailwind',
     'jet',
     'users',
     'main_app',
+    'theme',
+    'widget_tweaks',
+    'django_browser_reload',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -45,6 +49,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    "django_browser_reload.middleware.BrowserReloadMiddleware",
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -56,6 +61,10 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'peacemindai.urls'
 AUTH_USER_MODEL='users.User'
+
+TAILWIND_APP_NAME = 'theme'
+INTERNAL_IPS = ['127.0.0.1']
+NPM_BIN_PATH = r"C:\\Program Files\\nodejs\\npm.cmd"
 
 TEMPLATES = [
     {
@@ -141,7 +150,7 @@ JET_THEMES = [
     },
     {
         'theme' : 'green',
-        'color' : '#44b78b',
+        'color' : '#2E5339',
         'title' : 'Green',
     },
     {

@@ -17,8 +17,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('jet/', include("jet.urls")),
     path('users/', include("users.urls")),
+    path('', include("main_app.urls")),
+    path("__reload__/", include("django_browser_reload.urls")),
 ]
