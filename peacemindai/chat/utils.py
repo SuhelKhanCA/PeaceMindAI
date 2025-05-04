@@ -1,6 +1,10 @@
 from langchain_community.document_loaders import JSONLoader
 import json
 from pathlib import Path
+import os
+
+# Set USER_AGENT environment variable
+os.environ["USER_AGENT"] = "PeaceMindAI/1.0"
 
 file_path1 = Path('C:\\Users\\suhel\\Documents\\GitHub\\PeaceMindAI\\peacemindai\\chat\\data_source\\Intents.json')
 file_path2 = Path('C:\\Users\\suhel\\Documents\\GitHub\\PeaceMindAI\\peacemindai\\chat\\data_source\\Huggingface-mental-health-data.json')
@@ -9,7 +13,7 @@ from langchain_community.document_loaders import JSONLoader
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_community.document_loaders import WebBaseLoader
 from langchain_community.vectorstores import Chroma
-from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain.chains import RetrievalQA
 from langchain.prompts import PromptTemplate
