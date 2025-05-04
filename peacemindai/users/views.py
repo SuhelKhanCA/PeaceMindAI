@@ -1,9 +1,10 @@
 from django.shortcuts import redirect, render
 from django.contrib.auth import authenticate, login, logout
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from . import forms
 from django.views.decorators.http import require_http_methods
 from users import models
+from django.contrib import messages
 
 # Create your views here.
 
@@ -13,12 +14,15 @@ def login_view(request):
     
         if form.is_valid():
             login(request, form.get_user())
-            return HttpResponse("Login Successful")
+            messages.success(request, "Welcome back! You've been logged in successfully.")
+            next = request.GET.get('next', 'home')
+            return redirect(next)
         else:
+            messages.error(request, "Invalid email or password. Please try again.")
             context = {
-            "form": form
-        }
-        return render(request, "users/login.html", context)
+                "form": form
+            }
+            return render(request, "users/login.html", context)
     else:        
         context = {
             "form": forms.UserAuthForm()
@@ -30,8 +34,10 @@ def signup(request):
         form = forms.UserSignupForm(data=request.POST)
         if form.is_valid():
             login(request, form.save())
-            return HttpResponse('Signup Successful')
+            messages.success(request, "Account created successfully! Welcome to PeaceMindAI!")
+            return redirect("home")
         else:
+            messages.error(request, "Please correct the errors below.")
             context = {
                 "form": form
             }
@@ -50,7 +56,10 @@ def update_account(request):
         form = forms.UserUpdateForm(data=request.POST, instance=user)
 
         if form.is_valid():
-                form.save()                    
+            form.save()
+            messages.success(request, "Your profile has been updated successfully!")                    
+        else:
+            messages.error(request, "Please correct the errors below.")
         context = {
             "form": form,
         }
@@ -65,4 +74,5 @@ def update_account(request):
 def logout_view(request):
     if request.method == "POST":
         logout(request)
+        messages.info(request, "You have been logged out successfully.")
     return redirect('home')
