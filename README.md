@@ -37,6 +37,13 @@ PeaceMindAI is an AI-powered mental health support platform designed to offer ac
     - [Areas for Contribution](#areas-for-contribution)
   - [License](#license)
   - [Acknowledgments](#acknowledgments)
+  - [Screenshots](#screenshots)
+    - [Home Page](#home-page-1)
+    - [Registeration Page](#registeration-page)
+    - [Login Page](#login-page)
+    - [Profile Update](#profile-update)
+    - [About Page](#about-page)
+    - [Chat Section](#chat-section)
   - [Support](#support)
   - [Disclaimer](#disclaimer)
 
@@ -412,13 +419,39 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 - Contributors and testers
 - Django and Python communities
 
+## Screenshots
+
+### Home Page
+![alt text](snapshot/image1.png)
+![alt text](snapshot/image2.png)
+![alt text](snapshot/image3.png)
+![alt text](snapshot/image4.png)
+
+### Registeration Page
+![alt text](snapshot/image5.png)
+![alt text](snapshot/image6.png)
+
+### Login Page
+![alt text](snapshot/image7.png)
+
+### Profile Update
+![alt text](snapshot/image12.png)
+
+### About Page
+![alt text](snapshot/image8.png)
+![alt text](snapshot/image9.png)
+
+### Chat Section
+![alt text](snapshot/image10.png)
+![alt text](snapshot/image11.png)
+
 ## Support
 
 For support, please:
 
 - Open an issue on GitHub
 - Join our Discord community (coming soon)
-- Email: support@peacemindai.com
+- Email: suhelkhanca@gmail.com
 
 ## Disclaimer
 
