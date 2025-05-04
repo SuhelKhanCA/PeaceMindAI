@@ -16,7 +16,6 @@ PeaceMindAI is an AI-powered mental health support platform designed to offer ac
     - [Environment Variables](#environment-variables)
     - [Development Commands](#development-commands)
   - [Project Structure](#project-structure)
-    - [Visual Representation of the Project Structure](#visual-representation-of-the-project-structure)
     - [Workflow Diagram](#workflow-diagram)
   - [AI and Chat System](#ai-and-chat-system)
     - [Chat Architecture](#chat-architecture)
@@ -241,25 +240,11 @@ PeaceMindAI/
 │   └── wsgi.py             # WSGI configuration
 ```
 
-### Visual Representation of the Project Structure
-
-Below is a visual representation of the project structure to help you understand the organization:
-
-![Project Structure](static/images/project_structure.png)
-
 ### Workflow Diagram
 
 The following diagram illustrates the workflow of the PeaceMindAI system:
 
-```mermaid
-graph TD
-    A[User] -->|Sends Message| B[WebSocket Consumer]
-    B -->|Processes Message| C[AI Model (Groq API)]
-    C -->|Generates Response| D[WebSocket Consumer]
-    D -->|Sends Response| A
-    B -->|Stores Context| E[ChromaDB]
-    E -->|Retrieves Context| B
-```
+<!-- Excallidraw work remain -->
 
 These visuals provide a clearer understanding of the project structure and workflow. For more details, refer to the respective sections in this documentation.
 
