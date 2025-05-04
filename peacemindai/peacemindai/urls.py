@@ -20,8 +20,10 @@ from django.urls import include, path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('jet/', include("jet.urls")),
+    path('jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard')),
+    path('jet/', include("jet.urls", "jet")),
     path('users/', include("users.urls")),
     path('', include("main_app.urls")),
+    path('chat/', include("chat.urls")),
     path("__reload__/", include("django_browser_reload.urls")),
 ]

@@ -27,25 +27,29 @@ SECRET_KEY = 'django-insecure-8_30k3o=ku-70th$mt=!8jjv++wa-gg&d!dw6d)kj+7%sq=3d=
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    'tailwind',
+    'daphne',
+    'channels',
+    'jet.dashboard',
     'jet',
-    'users',
-    'main_app',
-    'theme',
-    'widget_tweaks',
-    'django_browser_reload',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'chat',
+    'tailwind',
+    'users',
+    'main_app',
+    'theme',
+    'widget_tweaks',
+    'django_browser_reload',
 ]
 
 MIDDLEWARE = [
@@ -58,6 +62,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+ASGI_APPLICATION = 'peacemindai.asgi.application'
 
 ROOT_URLCONF = 'peacemindai.urls'
 AUTH_USER_MODEL='users.User'
@@ -84,7 +90,7 @@ TEMPLATES = [
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
-WSGI_APPLICATION = 'peacemindai.wsgi.application'
+# WSGI_APPLICATION = 'peacemindai.wsgi.application'
 
 
 # Database
@@ -141,7 +147,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 JET_DEFAULT_THEME = 'light-gray'
-JET_SIDE_MENU_COMPACT = True
+# JET_SIDE_MENU_COMPACT = False
 JET_THEMES = [
     {
         'theme' : 'default',
@@ -154,11 +160,6 @@ JET_THEMES = [
         'title' : 'Green',
     },
     {
-        'theme' : 'violet',
-        'color' : '#44b',
-        'title' : 'Violet',
-    },
-    {
         'theme' : 'light-blue',
         'color' : '#5eadde',
         'title' : 'Light-Blue',
@@ -169,3 +170,18 @@ JET_THEMES = [
         'title' : 'Light-gray',
     },
 ]
+
+# Cache configuration
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'unique-snowflake',
+    }
+}
+
+# Channel Layer Configuration
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer"
+    }
+}
