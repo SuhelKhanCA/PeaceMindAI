@@ -4,15 +4,15 @@ from django.conf import settings
 
 User = settings.AUTH_USER_MODEL
 
-# 1. Chat History Table
-class ChatHistory(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='chats')
-    message = models.TextField(null=False)
-    response = models.TextField(null=False)
-    timestamp = models.DateTimeField(auto_now_add=True)
+# 1. Chat History Table (Defined in chat app)
+# class ChatHistory(models.Model):
+#     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='chats')
+#     message = models.TextField(null=False)
+#     response = models.TextField(null=False)
+#     timestamp = models.DateTimeField(auto_now_add=True)
 
-    def __str__(self):
-        return f"Chat {self.id} - User: {self.user.username} at {self.timestamp.strftime('%Y-%m-%d %H:%M:%S')}"
+#     def __str__(self):
+#         return f"Chat {self.id} - User: {self.user.username} at {self.timestamp.strftime('%Y-%m-%d %H:%M:%S')}"
 
 
 # 2. Feedback Table
