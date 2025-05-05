@@ -43,6 +43,7 @@ PeaceMindAI is an AI-powered mental health support platform designed to offer ac
     - [Profile Update](#profile-update)
     - [About Page](#about-page)
     - [Chat Section](#chat-section)
+    - [Feedback Section](#feedback-section)
   - [Support](#support)
   - [Disclaimer](#disclaimer)
 
@@ -429,6 +430,10 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 ### Chat Section
 ![alt text](snapshot/image10.png)
 ![alt text](snapshot/image11.png)
+
+### Feedback Section
+![alt text](snapshot/image13.png)
+![alt text](snapshot/image14.png)
 
 ## Support
 
