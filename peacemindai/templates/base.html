@@ -94,6 +94,11 @@
               class="text-white hover-accent transition-colors duration-200"
               >My Account</a
             >
+            <a
+              href="{% url 'submit_feedback' %}"
+              class="text-white hover-accent transition-colors duration-200"
+              >Rate Us</a
+            >
             <form action="{% url 'logout' %}" method="post" class="inline">
               {% csrf_token %}
               <button
