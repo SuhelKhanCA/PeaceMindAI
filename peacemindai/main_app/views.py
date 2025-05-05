@@ -37,4 +37,7 @@ def submit_feedback(request):
         
         return redirect('home')
     
-    return redirect('home')
+    context = {
+        'rating_choices': Feedback.RATING_CHOICES
+    }
+    return render(request, 'feedback.html', context)
