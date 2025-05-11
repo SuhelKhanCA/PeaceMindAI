@@ -1,12 +1,14 @@
 {% extends 'base.html' %} {% block title %}
 <title>PeaceMindAI | About</title>
 {% endblock %} {% block content %}
-<section class="bg-highlight py-16">
-  <div class="container mt-6 mx-auto px-4 text-center">
-    <h1 class="text-3xl font-bold text-primary mb-8">About PeaceMindAI</h1>
+<section class="bg-highlight py-8 md:py-16">
+  <div class="container mx-auto px-4 text-center">
+    <h1 class="text-2xl md:text-3xl font-bold text-primary mb-6 md:mb-8">
+      About PeaceMindAI
+    </h1>
 
-    <div class="bg-white rounded-lg shadow-lg p-8">
-      <p class="text-gray-700 mb-6">
+    <div class="bg-white rounded-lg shadow-lg p-4 md:p-8">
+      <p class="text-sm md:text-base text-gray-700 mb-6">
         PeaceMindAI is an AI-powered mental health support platform designed to
         offer accessible, personalized, and stigma-free emotional care. Built
         around an advanced Large Language Model (LLM) chatbot, our system helps
@@ -15,14 +17,16 @@
         mindfulness practices, and supportive counseling.
       </p>
 
-      <div class="border-l-4 border-accent pl-6 my-8 bg-gray-50 p-4">
-        <p class="text-primary italic">
+      <div
+        class="border-l-4 border-accent pl-4 md:pl-6 my-6 md:my-8 bg-gray-50 p-3 md:p-4"
+      >
+        <p class="text-primary italic text-sm md:text-base">
           "Our mission is to make mental health support accessible to everyone,
           anywhere, anytime."
         </p>
       </div>
 
-      <p class="text-gray-700 mb-6">
+      <p class="text-sm md:text-base text-gray-700 mb-6">
         With 24/7 availability and real-time interaction, PeaceMindAI ensures
         that help is always within reach, especially for people with limited
         access to traditional therapy. Our chatbot serves as a first line of
@@ -31,30 +35,36 @@
         confidentiality.
       </p>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 my-8">
-        <div class="bg-secondary text-white p-6 rounded-lg">
-          <h3 class="text-xl font-semibold mb-4">Our Approach</h3>
-          <p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 my-6 md:my-8">
+        <div class="bg-secondary text-white p-4 md:p-6 rounded-lg">
+          <h3 class="text-lg md:text-xl font-semibold mb-3 md:mb-4">
+            Our Approach
+          </h3>
+          <p class="text-sm md:text-base">
             We combine artificial intelligence with evidence-based therapeutic
             techniques to provide personalized mental health support that
             evolves with your needs.
           </p>
         </div>
-        <div class="bg-primary text-white p-6 rounded-lg">
-          <h3 class="text-xl font-semibold mb-4">Your Privacy</h3>
-          <p>
+        <div class="bg-primary text-white p-4 md:p-6 rounded-lg">
+          <h3 class="text-lg md:text-xl font-semibold mb-3 md:mb-4">
+            Your Privacy
+          </h3>
+          <p class="text-sm md:text-base">
             Your confidentiality is our priority. All conversations are private,
             secure, and protected by advanced encryption.
           </p>
         </div>
       </div>
 
-      <p class="text-gray-700 mb-6">
-        In addition to conversational support, PeaceMindAI offers curated mental
-        health resources uploaded by professionals, including self-help
-        articles, mindfulness exercises, and therapy guides to complement the
-        AI-driven care.
-      </p>
+      <div class="text-sm md:text-base text-gray-700">
+        <p class="mb-6">
+          In addition to conversational support, PeaceMindAI offers curated
+          mental health resources uploaded by professionals, including self-help
+          articles, mindfulness exercises, and therapy guides to complement the
+          AI-driven care.
+        </p>
+      </div>
     </div>
   </div>
 </section>
