@@ -1,52 +1,152 @@
 {% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
 {% block title %}
-<title>Login - PeaceMindAI</title>
+<title>PeaceMindAI | Login</title>
 {% endblock %}
 
 {% block content %}
-{% load widget_tweaks %}
-
-<section class="py-16">
-  <div class="container mt-16 mx-auto px-4">
-    <div class="max-w-xl mx-auto bg-white shadow-lg rounded-lg p-8 hover:shadow-xl transition-shadow duration-200 border border-accent/20">
-      <h2 class="text-3xl font-bold text-primary mb-8 text-center">Welcome Back</h2>
-      
-      <form class="space-y-6" method="POST">
-        {% csrf_token %}
-        
-        <div class="space-y-4">
-          <div>
-            <label for="{{ form.username.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
-            {% render_field form.email class="block w-full px-4 py-3 rounded-md border-gray-300 focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50 shadow-sm transition duration-150 ease-in-out" placeholder="Enter your email" %}
-            {% if form.username.errors %}
-              <div class="text-red-500 text-sm mt-1">{{ form.username.errors }}</div>
-            {% endif %}
-          </div>
-          
-          <div>
-            <label for="{{ form.password.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
-            {% render_field form.password class="block w-full px-4 py-3 rounded-md border-gray-300 focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50 shadow-sm transition duration-150 ease-in-out" placeholder="Enter your password" %}
-            {% if form.password.errors %}
-              <div class="text-red-500 text-sm mt-1">{{ form.password.errors }}</div>
-            {% endif %}
-          </div>
-        </div>
-
-        <div class="text-center mt-8">
-          <button type="submit" 
-            class="max-w-md mx-auto bg-primary text-white px-5 py-2.5 rounded-md hover:bg-secondary transform hover:-translate-y-0.5 transition-all duration-150 font-medium shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50">
-            Sign In
-          </button>
-        </div>
-        
-        <p class="text-center text-gray-600 mt-6">
-          Don't have an account? 
-          <a href="{% url 'signup' %}" class="text-primary hover:text-secondary transition-colors duration-200 font-medium">
-            Create one now
-          </a>
-        </p>
-      </form>
+<!-- Hero Section -->
+<section class="relative py-20 overflow-hidden">
+    <!-- Animated background gradient -->
+    <div class="absolute inset-0 bg-gradient-to-br from-primary/20 via-secondary/20 to-accent/20 dark:from-primary/10 dark:via-secondary/10 dark:to-accent/10 animate-gradient"></div>
+    
+    <!-- Decorative elements -->
+    <div class="absolute inset-0 overflow-hidden">
+        <div class="absolute -top-40 -right-40 w-80 h-80 bg-primary/10 rounded-full blur-3xl"></div>
+        <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-accent/10 rounded-full blur-3xl"></div>
     </div>
-  </div>
+
+    <div class="container mx-auto px-4 relative z-10">
+        <div class="max-w-md mx-auto">
+            <!-- Header -->
+            <div class="text-center mb-8">
+                <h1 class="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent animate-gradient-x">
+                    Welcome Back
+                </h1>
+                <p class="text-lg text-gray-600 dark:text-gray-300">
+                    Sign in to continue your mental wellness journey
+                </p>
+            </div>
+
+            <!-- Login Form -->
+            <div class="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-2xl shadow-lg p-8 border border-gray-100 dark:border-gray-700">
+                <form class="space-y-6" method="post">
+                    {% csrf_token %}
+                    
+                    <!-- Username Field -->
+                    <div>
+                        <label for="id_username" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                            Email
+                        </label>
+                        <div class="mt-1 relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i class='bx bx-user text-primary/60 dark:text-primary/40'></i>
+                            </div>
+                            {% render_field form.email class="pl-10 appearance-none block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white" placeholder="Enter your username" %}
+                        </div>
+                        {% if form.username.errors %}
+                        <p class="mt-2 text-sm text-red-600">{{ form.username.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+
+                    <!-- Password Field -->
+                    <div>
+                        <label for="id_password" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                            Password
+                        </label>
+                        <div class="mt-1 relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i class='bx bx-lock-alt text-primary/60 dark:text-primary/40'></i>
+                            </div>
+                            {% render_field form.password class="pl-10 appearance-none block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white" placeholder="Enter your password" %}
+                        </div>
+                        {% if form.password.errors %}
+                        <p class="mt-2 text-sm text-red-600">{{ form.password.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+
+                    <!-- Remember Me & Forgot Password -->
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <input id="remember_me" name="remember_me" type="checkbox" class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded">
+                            <label for="remember_me" class="ml-2 block text-sm text-gray-700 dark:text-gray-300">
+                                Remember me
+                            </label>
+                        </div>
+                        <a href="#" class="text-sm text-primary hover:text-accent transition-colors duration-200">
+                            Forgot password?
+                        </a>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div>
+                        <button type="submit" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-primary hover:bg-accent focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transform hover:scale-105 transition-all duration-300">
+                            <i class='bx bx-log-in mr-2'></i>
+                            Sign In
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Divider -->
+                <div class="mt-6">
+                    <div class="relative">
+                        <div class="absolute inset-0 flex items-center">
+                            <div class="w-full border-t border-gray-300 dark:border-gray-600"></div>
+                        </div>
+                        <div class="relative flex justify-center text-sm">
+                            <span class="px-2 bg-white dark:bg-gray-800 text-gray-500">
+                                Or sign in with
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Social Login Buttons -->
+                <div class="mt-6 grid grid-cols-2 gap-3">
+                    <a href="#" class="w-full inline-flex justify-center py-2 px-4 border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm bg-white dark:bg-gray-700 text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-600 transform hover:scale-105 transition-all duration-300">
+                        <i class='bx bxl-google text-xl mr-2 text-primary/60 dark:text-primary/40'></i>
+                        Google
+                    </a>
+                    <a href="#" class="w-full inline-flex justify-center py-2 px-4 border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm bg-white dark:bg-gray-700 text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-600 transform hover:scale-105 transition-all duration-300">
+                        <i class='bx bxl-facebook text-xl mr-2 text-primary/60 dark:text-primary/40'></i>
+                        Facebook
+                    </a>
+                </div>
+            </div>
+
+            <!-- Sign Up Link -->
+            <div class="text-center mt-8">
+                <p class="text-sm text-gray-600 dark:text-gray-300">
+                    Don't have an account?
+                    <a href="{% url 'signup' %}" class="font-medium text-primary hover:text-accent transition-colors duration-200">
+                        Create one now
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
 </section>
+
+<!-- Add custom styles -->
+<style>
+    @keyframes gradient-x {
+        0%, 100% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+    }
+    
+    .animate-gradient-x {
+        background-size: 200% 200%;
+        animation: gradient-x 15s ease infinite;
+    }
+    
+    .animate-gradient {
+        animation: gradient-x 20s ease infinite;
+    }
+</style>
 {% endblock %}

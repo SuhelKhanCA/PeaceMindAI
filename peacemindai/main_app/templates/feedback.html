@@ -1,110 +1,154 @@
-{% extends 'base.html' %} {% block title %}
-<title>Feedback - PeaceMindAI</title>
-{% endblock %} {% block content %} {% load widget_tweaks %}
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
 
-<section class="min-h-screen py-8 md:py-16">
-  <div class="container mx-auto px-4">
-    <div
-      class="max-w-2xl mx-auto bg-white shadow-lg rounded-lg p-6 md:p-8 hover:shadow-xl transition-shadow duration-200 border border-accent/20"
-    >
-      <h2
-        class="text-2xl md:text-3xl font-bold text-primary mb-6 md:mb-8 text-center"
-      >
-        Share Your Feedback
-      </h2>
+{% block title %}
+<title>PeaceMindAI | Feedback</title>
+{% endblock %}
 
-      <form class="space-y-4 md:space-y-6" method="POST">
-        {% csrf_token %}
-
-        <div class="grid grid-cols-1 gap-6">
-          <!-- Rating Section -->
-          <div class="col-span-1">
-            <label
-              class="block text-sm md:text-base font-medium text-gray-700 mb-3"
-              >Rate your experience</label
-            >
-            <div class="flex flex-wrap justify-center gap-2 md:gap-4">
-              {% for value, label in rating_choices %}
-              <div class="flex flex-col items-center">
-                <input
-                  type="radio"
-                  name="rating"
-                  value="{{ value }}"
-                  id="rating{{ value }}"
-                  class="hidden peer"
-                  required
-                />
-                <label
-                  for="rating{{ value }}"
-                  class="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-full border-2 border-primary cursor-pointer transition-all duration-200 peer-checked:bg-primary peer-checked:text-white hover:bg-primary/10 text-lg md:text-xl"
-                >
-                  ★
-                </label>
-                <span class="mt-1 text-xs md:text-sm text-gray-600"
-                  >{{ value }}</span
-                >
-              </div>
-              {% endfor %}
-            </div>
-          </div>
-
-          <!-- Comments Section -->
-          <div class="col-span-1">
-            <label
-              for="comments"
-              class="block text-sm md:text-base font-medium text-gray-700 mb-1"
-              >Additional Comments</label
-            >
-            <textarea
-              name="comments"
-              id="comments"
-              rows="4"
-              class="block w-full px-3 md:px-4 py-2 md:py-3 text-sm md:text-base rounded-md border-gray-300 focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50 shadow-sm transition duration-150 ease-in-out resize-none"
-              placeholder="Share your thoughts and suggestions..."
-            ></textarea>
-          </div>
-        </div>
-
-        {% if messages %}
-        <div class="mt-4">
-          {% for message in messages %}
-          <div
-            class="p-3 md:p-4 rounded-lg {% if message.tags == 'success' %}bg-green-100 text-green-700{% else %}bg-red-100 text-red-700{% endif %}"
-          >
-            <p class="text-sm md:text-base">{{ message }}</p>
-          </div>
-          {% endfor %}
-        </div>
-        {% endif %}
-
-        <div class="text-center mt-6 md:mt-8">
-          <button
-            type="submit"
-            class="w-full md:w-auto px-5 py-2.5 bg-primary text-white text-sm md:text-base rounded-md hover:bg-secondary transform hover:-translate-y-0.5 transition-all duration-150 font-medium shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50"
-          >
-            Submit Feedback
-          </button>
-        </div>
-      </form>
+{% block content %}
+<!-- Hero Section -->
+<section class="relative py-20 overflow-hidden">
+    <!-- Animated background gradient -->
+    <div class="absolute inset-0 bg-gradient-to-br from-primary/20 via-secondary/20 to-accent/20 dark:from-primary/10 dark:via-secondary/10 dark:to-accent/10 animate-gradient"></div>
+    
+    <!-- Decorative elements -->
+    <div class="absolute inset-0 overflow-hidden">
+        <div class="absolute -top-40 -right-40 w-80 h-80 bg-primary/10 rounded-full blur-3xl"></div>
+        <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-accent/10 rounded-full blur-3xl"></div>
     </div>
-  </div>
+
+    <div class="container mx-auto px-4 relative z-10">
+        <div class="max-w-2xl mx-auto">
+            <!-- Header -->
+            <div class="text-center mb-8">
+                <h1 class="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent animate-gradient-x">
+                    Share Your Feedback
+                </h1>
+                <p class="text-lg text-gray-600 dark:text-gray-300">
+                    Help us improve your experience
+                </p>
+            </div>
+
+            <!-- Feedback Form -->
+            <div class="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-2xl shadow-lg p-8 border border-gray-100 dark:border-gray-700">
+                <form class="space-y-6" method="POST">
+                    {% csrf_token %}
+
+                    <!-- Rating Section -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-4">
+                            Rate your experience
+                        </label>
+                        <div class="flex flex-wrap justify-center gap-4">
+                            {% for value, label in rating_choices %}
+                            <div class="flex flex-col items-center group">
+                                <input
+                                    type="radio"
+                                    name="rating"
+                                    value="{{ value }}"
+                                    id="rating{{ value }}"
+                                    class="hidden peer"
+                                    required
+                                />
+                                <label
+                                    for="rating{{ value }}"
+                                    class="w-12 h-12 flex items-center justify-center rounded-full border-2 border-primary cursor-pointer transition-all duration-300 peer-checked:bg-primary peer-checked:text-white hover:bg-primary/10 text-xl transform hover:scale-110 group-hover:border-accent"
+                                >
+                                    ★
+                                </label>
+                                <span class="mt-2 text-sm text-gray-600 dark:text-gray-400 group-hover:text-primary transition-colors duration-200">
+                                    {{ value }}
+                                </span>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <!-- Comments Section -->
+                    <div>
+                        <label for="comments" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                            Additional Comments
+                        </label>
+                        <div class="relative">
+                            <div class="absolute top-3 left-3 text-primary/60 dark:text-primary/40">
+                                <i class='bx bx-message-square-detail text-xl'></i>
+                            </div>
+                            <textarea
+                                name="comments"
+                                id="comments"
+                                rows="4"
+                                class="pl-10 appearance-none block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white resize-none transition duration-200"
+                                placeholder="Share your thoughts and suggestions..."
+                            ></textarea>
+                        </div>
+                    </div>
+
+                    {% if messages %}
+                    <div class="space-y-3">
+                        {% for message in messages %}
+                        <div class="p-4 rounded-lg {% if message.tags == 'success' %}bg-green-100 dark:bg-green-900/50 text-green-700 dark:text-green-300{% else %}bg-red-100 dark:bg-red-900/50 text-red-700 dark:text-red-300{% endif %}">
+                            <p class="text-sm">{{ message }}</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+
+                    <!-- Submit Button -->
+                    <div class="text-center">
+                        <button
+                            type="submit"
+                            class="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-primary hover:bg-accent focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transform hover:scale-105 transition-all duration-300"
+                        >
+                            <i class='bx bx-send mr-2'></i>
+                            Submit Feedback
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </section>
 
+<!-- Add custom styles -->
 <style>
-  /* Add golden color to the stars */
-  input[type="radio"] + label {
-    color: #d1d5db; /* Default gray color */
-  }
-
-  input[type="radio"]:checked + label,
-  input[type="radio"] + label:hover {
-    color: #fbbf24; /* Golden color when selected or hovered */
-  }
-
-  @media (max-width: 640px) {
-    .rating-stars label {
-      font-size: 1.25rem;
+    @keyframes gradient-x {
+        0%, 100% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
     }
-  }
+    
+    .animate-gradient-x {
+        background-size: 200% 200%;
+        animation: gradient-x 15s ease infinite;
+    }
+    
+    .animate-gradient {
+        animation: gradient-x 20s ease infinite;
+    }
+
+    /* Star rating styles */
+    input[type="radio"] + label {
+        color: #d1d5db;
+        transition: all 0.3s ease;
+    }
+
+    input[type="radio"]:checked + label {
+        color: #fbbf24;
+        transform: scale(1.1);
+    }
+
+    input[type="radio"] + label:hover {
+        color: #fbbf24;
+    }
+
+    @media (max-width: 640px) {
+        .rating-stars label {
+            font-size: 1.25rem;
+        }
+    }
 </style>
 {% endblock %}

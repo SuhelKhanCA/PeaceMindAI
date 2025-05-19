@@ -1,71 +1,186 @@
-{% extends 'base.html' %} {% block title %}
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
 <title>PeaceMindAI | About</title>
-{% endblock %} {% block content %}
-<section class="bg-highlight py-8 md:py-16">
-  <div class="container mx-auto px-4 text-center">
-    <h1 class="text-2xl md:text-3xl font-bold text-primary mb-6 md:mb-8">
-      About PeaceMindAI
-    </h1>
+{% endblock %}
 
-    <div class="bg-white rounded-lg shadow-lg p-4 md:p-8">
-      <p class="text-sm md:text-base text-gray-700 mb-6">
-        PeaceMindAI is an AI-powered mental health support platform designed to
-        offer accessible, personalized, and stigma-free emotional care. Built
-        around an advanced Large Language Model (LLM) chatbot, our system helps
-        individuals manage stress, anxiety, depression, and PTSD through
-        meaningful conversations, cognitive behavioral therapy techniques,
-        mindfulness practices, and supportive counseling.
-      </p>
-
-      <div
-        class="border-l-4 border-accent pl-4 md:pl-6 my-6 md:my-8 bg-gray-50 p-3 md:p-4"
-      >
-        <p class="text-primary italic text-sm md:text-base">
-          "Our mission is to make mental health support accessible to everyone,
-          anywhere, anytime."
-        </p>
-      </div>
-
-      <p class="text-sm md:text-base text-gray-700 mb-6">
-        With 24/7 availability and real-time interaction, PeaceMindAI ensures
-        that help is always within reach, especially for people with limited
-        access to traditional therapy. Our chatbot serves as a first line of
-        support, providing guidance, suggesting self-help resources, and
-        encouraging mental well-being while protecting user privacy and
-        confidentiality.
-      </p>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 my-6 md:my-8">
-        <div class="bg-secondary text-white p-4 md:p-6 rounded-lg">
-          <h3 class="text-lg md:text-xl font-semibold mb-3 md:mb-4">
-            Our Approach
-          </h3>
-          <p class="text-sm md:text-base">
-            We combine artificial intelligence with evidence-based therapeutic
-            techniques to provide personalized mental health support that
-            evolves with your needs.
-          </p>
-        </div>
-        <div class="bg-primary text-white p-4 md:p-6 rounded-lg">
-          <h3 class="text-lg md:text-xl font-semibold mb-3 md:mb-4">
-            Your Privacy
-          </h3>
-          <p class="text-sm md:text-base">
-            Your confidentiality is our priority. All conversations are private,
-            secure, and protected by advanced encryption.
-          </p>
-        </div>
-      </div>
-
-      <div class="text-sm md:text-base text-gray-700">
-        <p class="mb-6">
-          In addition to conversational support, PeaceMindAI offers curated
-          mental health resources uploaded by professionals, including self-help
-          articles, mindfulness exercises, and therapy guides to complement the
-          AI-driven care.
-        </p>
-      </div>
+{% block content %}
+<!-- Hero Section -->
+<section class="relative py-20 overflow-hidden">
+    <!-- Animated background gradient -->
+    <div class="absolute inset-0 bg-gradient-to-br from-primary/20 via-secondary/20 to-accent/20 dark:from-primary/10 dark:via-secondary/10 dark:to-accent/10 animate-gradient"></div>
+    
+    <!-- Decorative elements -->
+    <div class="absolute inset-0 overflow-hidden">
+        <div class="absolute -top-40 -right-40 w-80 h-80 bg-primary/10 rounded-full blur-3xl"></div>
+        <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-accent/10 rounded-full blur-3xl"></div>
     </div>
-  </div>
+
+    <div class="container mx-auto px-4 relative z-10">
+        <div class="max-w-4xl mx-auto text-center">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent animate-gradient-x">
+                About PeaceMindAI
+            </h1>
+            <p class="text-lg md:text-xl text-gray-600 dark:text-gray-300 mb-8 leading-relaxed">
+                Empowering mental wellness through advanced AI technology and compassionate support.
+            </p>
+        </div>
+    </div>
 </section>
+
+<!-- Mission Section -->
+<section class="py-20">
+    <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto">
+            <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 md:p-12 shadow-lg">
+                <h2 class="text-3xl md:text-4xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">
+                    Our Mission
+                </h2>
+                <p class="text-lg text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
+                    At PeaceMindAI, we're dedicated to making mental health support accessible to everyone. Our AI companion is designed to provide immediate, compassionate assistance whenever you need it.
+                </p>
+                <p class="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+                    We believe that everyone deserves access to mental health support, and we're committed to breaking down barriers through innovative technology.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Values Section -->
+<section class="py-20 bg-gray-50 dark:bg-gray-900">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">
+            Our Core Values
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Value 1 -->
+            <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
+                <div class="w-16 h-16 bg-primary/10 dark:bg-primary/20 rounded-xl flex items-center justify-center mb-6">
+                    <i class='bx bx-heart text-3xl text-primary'></i>
+                </div>
+                <h3 class="text-xl font-bold mb-4 text-gray-900 dark:text-white">Compassion</h3>
+                <p class="text-gray-600 dark:text-gray-300">We approach every interaction with empathy and understanding, ensuring users feel heard and supported.</p>
+            </div>
+
+            <!-- Value 2 -->
+            <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
+                <div class="w-16 h-16 bg-primary/10 dark:bg-primary/20 rounded-xl flex items-center justify-center mb-6">
+                    <i class='bx bx-shield text-3xl text-primary'></i>
+                </div>
+                <h3 class="text-xl font-bold mb-4 text-gray-900 dark:text-white">Privacy</h3>
+                <p class="text-gray-600 dark:text-gray-300">We prioritize user privacy and data security, ensuring all conversations remain confidential.</p>
+            </div>
+
+            <!-- Value 3 -->
+            <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
+                <div class="w-16 h-16 bg-primary/10 dark:bg-primary/20 rounded-xl flex items-center justify-center mb-6">
+                    <i class='bx bx-bulb text-3xl text-primary'></i>
+                </div>
+                <h3 class="text-xl font-bold mb-4 text-gray-900 dark:text-white">Innovation</h3>
+                <p class="text-gray-600 dark:text-gray-300">We continuously improve our AI technology to provide better, more personalized support.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Team Section -->
+<section class="py-20">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">
+            Our Team
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Team Member 1 -->
+            <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg">
+                <div class="w-32 h-32 mx-auto mb-6 bg-primary/10 rounded-full flex items-center justify-center">
+                    <i class='bx bxs-user text-5xl text-primary'></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2 text-center text-gray-900 dark:text-white">Dr. Sarah Johnson</h3>
+                <p class="text-primary text-center mb-4">Founder & AI Specialist</p>
+                <p class="text-gray-600 dark:text-gray-300 text-center">Leading our AI development with expertise in mental health and machine learning.</p>
+            </div>
+
+            <!-- Team Member 2 -->
+            <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg">
+                <div class="w-32 h-32 mx-auto mb-6 bg-primary/10 rounded-full flex items-center justify-center">
+                    <i class='bx bxs-user text-5xl text-primary'></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2 text-center text-gray-900 dark:text-white">Michael Chen</h3>
+                <p class="text-primary text-center mb-4">Head of Technology</p>
+                <p class="text-gray-600 dark:text-gray-300 text-center">Ensuring our platform remains secure, reliable, and user-friendly.</p>
+            </div>
+
+            <!-- Team Member 3 -->
+            <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg">
+                <div class="w-32 h-32 mx-auto mb-6 bg-primary/10 rounded-full flex items-center justify-center">
+                    <i class='bx bxs-user text-5xl text-primary'></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2 text-center text-gray-900 dark:text-white">Dr. Emily Rodriguez</h3>
+                <p class="text-primary text-center mb-4">Mental Health Director</p>
+                <p class="text-gray-600 dark:text-gray-300 text-center">Overseeing the quality and effectiveness of our mental health support.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-20 bg-gray-50 dark:bg-gray-900">
+    <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto bg-gradient-to-r from-primary to-accent rounded-3xl p-12 text-center relative overflow-hidden">
+            <!-- Decorative elements -->
+            <div class="absolute top-0 left-0 w-full h-full">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
+                <div class="absolute bottom-0 left-0 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
+            </div>
+            
+            <div class="relative z-10">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">Join Our Mission</h2>
+                <p class="text-white/90 mb-8 text-lg">Be part of our journey to make mental health support accessible to everyone.</p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    {% if user.is_authenticated %}
+                    <a href="{% url 'chat-lobby' %}" 
+                       class="inline-flex items-center justify-center px-8 py-3 text-lg font-medium text-primary bg-white rounded-lg hover:bg-gray-100 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
+                        <i class='bx bx-message-square-dots mr-2'></i>
+                        Start Chatting
+                    </a>
+                    {% else %}
+                    <a href="{% url 'signup' %}" 
+                       class="inline-flex items-center justify-center px-8 py-3 text-lg font-medium text-primary bg-white rounded-lg hover:bg-gray-100 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
+                        <i class='bx bx-user-plus mr-2'></i>
+                        Get Started
+                    </a>
+                    <a href="{% url 'login' %}" 
+                       class="inline-flex items-center justify-center px-8 py-3 text-lg font-medium text-white border-2 border-white rounded-lg hover:bg-white/10 transform hover:scale-105 transition-all duration-300">
+                        <i class='bx bx-log-in mr-2'></i>
+                        Sign In
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Add custom styles -->
+<style>
+    @keyframes gradient-x {
+        0%, 100% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+    }
+    
+    .animate-gradient-x {
+        background-size: 200% 200%;
+        animation: gradient-x 15s ease infinite;
+    }
+    
+    .animate-gradient {
+        animation: gradient-x 20s ease infinite;
+    }
+</style>
 {% endblock %}

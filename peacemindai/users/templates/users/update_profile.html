@@ -1,39 +1,100 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
+{% load static %}
 {% load widget_tweaks %}
+
 {% block title %}
-<title>Update Profile - PeaceMindAI</title>
-{% endblock %} 
+<title>PeaceMindAI | Update Profile</title>
+{% endblock %}
 
 {% block content %}
-<div class="min-h-screen pt-16 pb-12 flex flex-col bg-gray-50">
-    <div class="container mx-auto px-4 py-8">
-        <div class="max-w-md mx-auto bg-white rounded-lg shadow-lg p-8">
-            <h2 class="text-3xl font-bold text-primary mb-6 text-center">Update Profile</h2>
-            
-            <form method="POST" class="space-y-6">
-                {% csrf_token %}
-                
-                {% for field in form %}
-                <div class="space-y-2">
-                    <label for="{{ field.id_for_label }}" class="block text-sm font-medium text-gray-700">
-                        {{ field.label }}
-                    </label>
-                    {% render_field field class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" %}
-                    {% if field.errors %}
-                        {% for error in field.errors %}
-                            <p class="text-red-500 text-xs mt-1">{{ error }}</p>
-                        {% endfor %}
-                    {% endif %}
-                </div>
-                {% endfor %}
-                
-                <div class="flex justify-center mt-8">
-                    <button type="submit" class="inline-block bg-primary text-white px-8 py-3 rounded-lg hover:bg-secondary transition-colors duration-200">
-                        Update Profile
-                    </button>
-                </div>
-            </form>
+<!-- Hero Section -->
+<section class="relative py-20 overflow-hidden">
+    <!-- Animated background gradient -->
+    <div class="absolute inset-0 bg-gradient-to-br from-primary/20 via-secondary/20 to-accent/20 dark:from-primary/10 dark:via-secondary/10 dark:to-accent/10 animate-gradient"></div>
+    
+    <!-- Decorative elements -->
+    <div class="absolute inset-0 overflow-hidden">
+        <div class="absolute -top-40 -right-40 w-80 h-80 bg-primary/10 rounded-full blur-3xl"></div>
+        <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-accent/10 rounded-full blur-3xl"></div>
+    </div>
+
+    <div class="container mx-auto px-4 relative z-10">
+        <div class="max-w-2xl mx-auto">
+            <!-- Header -->
+            <div class="text-center mb-8">
+                <h1 class="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent animate-gradient-x">
+                    Update Your Profile
+                </h1>
+                <p class="text-lg text-gray-600 dark:text-gray-300">
+                    Keep your information up to date
+                </p>
+            </div>
+
+            <!-- Update Profile Form -->
+            <div class="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-2xl shadow-lg p-8 border border-gray-100 dark:border-gray-700">
+                <form method="POST" class="space-y-6">
+                    {% csrf_token %}
+                    
+                    {% for field in form %}
+                    <div class="space-y-2">
+                        <label for="{{ field.id_for_label }}" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                            {{ field.label }}
+                        </label>
+                        <div class="mt-1 relative">
+                            {% if field.name == 'email' %}
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i class='bx bx-envelope text-primary/60 dark:text-primary/40'></i>
+                            </div>
+                            {% elif field.name == 'first_name' or field.name == 'last_name' %}
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i class='bx bx-user text-primary/60 dark:text-primary/40'></i>
+                            </div>
+                            {% elif field.name == 'dob' %}
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i class='bx bx-calendar text-primary/60 dark:text-primary/40'></i>
+                            </div>
+                            {% endif %}
+                            
+                            {% render_field field class="pl-10 appearance-none block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white" %}
+                        </div>
+                        {% if field.errors %}
+                            {% for error in field.errors %}
+                                <p class="text-sm text-red-600">{{ error }}</p>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                    
+                    <div class="flex justify-center mt-8">
+                        <button type="submit" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-primary hover:bg-accent focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transform hover:scale-105 transition-all duration-300">
+                            <i class='bx bx-save mr-2'></i>
+                            Save Changes
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-</div>
+</section>
+
+<!-- Add custom styles -->
+<style>
+    @keyframes gradient-x {
+        0%, 100% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+    }
+    
+    .animate-gradient-x {
+        background-size: 200% 200%;
+        animation: gradient-x 15s ease infinite;
+    }
+    
+    .animate-gradient {
+        animation: gradient-x 20s ease infinite;
+    }
+</style>
 {% endblock %}

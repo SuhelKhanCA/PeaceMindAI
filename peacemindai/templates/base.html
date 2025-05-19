@@ -4,176 +4,117 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="icon"
-      href="https://images.pexels.com/photos/40568/medical-appointment-doctor-healthcare-40568.jpeg?auto=compress&cs=tinysrgb&w=600"
-    />
+    
+    <!-- Load Poppins font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Add Tailwind CSS with defer -->
+    <script src="https://cdn.tailwindcss.com" defer></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        tailwind.config = {
+          darkMode: 'class',
+          theme: {
+            extend: {
+              colors: {
+                primary: '#008374',
+                secondary: '#00796b',
+                accent: '#f85a40'
+              },
+              fontFamily: {
+                sans: ['Poppins', 'sans-serif']
+              }
+            }
+          }
+        }
+      });
+    </script>
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+    
+    <link rel="icon" href="https://images.pexels.com/photos/40568/medical-appointment-doctor-healthcare-40568.jpeg?auto=compress&cs=tinysrgb&w=600" />
     {% tailwind_css %}
-    <style>
-      :root {
-        --aquamarine: #00fddc;
-        --cal-poly-green: #2e5339;
-        --hunter-green: #495f41;
-        --bright-pink-crayola: #ff5666;
-        --tea-rose-red: #ffccc9;
-      }
-      .bg-primary {
-        background-color: var(--cal-poly-green);
-      }
-      .bg-secondary {
-        background-color: var(--hunter-green);
-      }
-      .bg-accent {
-        background-color: var(--aquamarine);
-      }
-      .bg-highlight {
-        background-color: var(--tea-rose-red);
-      }
-      .text-primary {
-        color: var(--cal-poly-green);
-      }
-      .text-accent {
-        color: var(--aquamarine);
-      }
-      .hover-accent:hover {
-        color: var(--aquamarine);
-      }
-      .bg-nav {
-        background-color: var(--cal-poly-green);
-      }
-
-      /* Header animation */
-      header {
-        transform: translateY(0);
-        transition: transform 0.3s ease;
-      }
-
-      header.header-hidden {
-        transform: translateY(-100%);
-      }
-      body {
-      }
-    </style>
     {% block title %}{% endblock %}
   </head>
-  <body class="bg-gray-50 font-sans">
-    <header
-      class="fixed top-0 left-0 right-0 w-full z-50 transition-all duration-200"
-    >
-      <div class="bg-nav md:bg-transparent py-4">
-        <div class="container mx-auto flex justify-between items-center px-4">
-          <a href="{% url 'home' %}" class="flex items-center space-x-2">
-            <img
-              src="https://images.pexels.com/photos/40568/medical-appointment-doctor-healthcare-40568.jpeg?auto=compress&cs=tinysrgb&w=600"
-              alt="Logo"
-              class="h-8 w-8 rounded-full"
-            />
-            <span class="text-xl font-bold text-white md:text-primary"
-              >PeaceMindAI</span
-            >
-          </a>
+  <body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-white transition-colors duration-300">
+    <header class="fixed w-full bg-white dark:bg-gray-900 shadow-md z-50 transition-colors duration-300">
+      <nav class="container mx-auto px-6 py-4 flex items-center justify-between">
+        <button type="button" id="darkModeToggle" class="text-primary hover:text-accent transition-colors">
+          <i class='bx bxs-moon text-2xl'></i>
+        </button>
 
-          <!-- Mobile menu button -->
-          <button
-            id="mobile-menu-button"
-            class="md:hidden text-white focus:outline-none"
-          >
-            <svg
-              class="h-6 w-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M4 6h16M4 12h16M4 18h16"
-              ></path>
-            </svg>
+        <a href="{% url 'home' %}" class="text-2xl font-bold text-primary">PeaceMindAI</a>
+
+        <div class="hidden md:flex space-x-8">
+          <a href="{% url 'home' %}" class="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors">Home</a>
+          <a href="{% url 'about' %}" class="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors">About</a>
+          {% if user.is_authenticated %}
+          <a href="{% url 'chat-lobby' %}" class="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors">Chat</a>
+          <a href="{% url 'update_account' %}" class="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors">My Account</a>
+          <a href="{% url 'submit_feedback' %}" class="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors">Rate Us</a>
+          <form action="{% url 'logout' %}" method="post" class="inline">
+            {% csrf_token %}
+            <button type="submit" class="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors">
+              Logout
+            </button>
+          </form>
+          {% else %}
+          <a href="{% url 'login' %}" class="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors">Login</a>
+          <a href="{% url 'signup' %}" class="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors">Sign Up</a>
+          {% endif %}
+        </div>
+
+        <button class="md:hidden text-primary" id="nav-toggle">
+          <i class='bx bx-menu text-2xl'></i>
+        </button>
+      </nav>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div id="nav-menu" class="fixed inset-0 bg-gray-900/50 backdrop-blur-sm md:hidden hidden opacity-0 transition-all duration-300">
+      <div class="bg-white dark:bg-gray-800 w-64 h-full p-6 shadow-lg transform -translate-x-full transition-transform duration-300">
+        <div class="flex justify-between items-center mb-8">
+          <h2 class="text-xl font-bold text-primary">Menu</h2>
+          <button id="nav-close" class="text-gray-500 hover:text-primary">
+            <i class='bx bx-x text-2xl'></i>
           </button>
-
-          <!-- Navigation menu -->
-          <nav
-            id="nav-menu"
-            class="fixed md:relative top-[3.5rem] md:top-0 right-0 md:right-auto w-full md:w-auto transform translate-x-full md:translate-x-0 transition-transform duration-200 ease-in-out md:transition-none md:flex md:space-x-6"
-          >
-            <div
-              class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-6 p-4 md:p-0 bg-nav md:bg-transparent"
-            >
-              <a
-                href="{% url 'home' %}"
-                class="text-white md:text-primary hover-accent transition-colors duration-200"
-                >Home</a
-              >
-              <a
-                href="{% url 'about' %}"
-                class="text-white md:text-primary hover-accent transition-colors duration-200"
-                >About</a
-              >
-              {% if user.is_authenticated %}
-              <a
-                href="{% url 'chat-lobby' %}"
-                class="text-white md:text-primary hover-accent transition-colors duration-200"
-                >Chat</a
-              >
-              <a
-                href="{% url 'update_account' %}"
-                class="text-white md:text-primary hover-accent transition-colors duration-200"
-                >My Account</a
-              >
-              <a
-                href="{% url 'submit_feedback' %}"
-                class="text-white md:text-primary hover-accent transition-colors duration-200"
-                >Rate Us</a
-              >
-              <form action="{% url 'logout' %}" method="post" class="inline">
-                {% csrf_token %}
-                <button
-                  type="submit"
-                  class="text-white md:text-primary hover-accent transition-colors duration-200 w-full text-left"
-                >
-                  Logout
-                </button>
-              </form>
-              {% else %}
-              <a
-                href="{% url 'login' %}"
-                class="text-white md:text-primary hover-accent transition-colors duration-200"
-                >Login</a
-              >
-              <a
-                href="{% url 'signup' %}"
-                class="text-white md:text-primary hover-accent transition-colors duration-200"
-                >Sign Up</a
-              >
-              {% endif %}
-            </div>
-          </nav>
+        </div>
+        <div class="flex flex-col space-y-4">
+          <a href="{% url 'home' %}" class="text-gray-600 dark:text-gray-300 hover:text-primary">Home</a>
+          <a href="{% url 'about' %}" class="text-gray-600 dark:text-gray-300 hover:text-primary">About</a>
+          {% if user.is_authenticated %}
+          <a href="{% url 'chat-lobby' %}" class="text-gray-600 dark:text-gray-300 hover:text-primary">Chat</a>
+          <a href="{% url 'update_account' %}" class="text-gray-600 dark:text-gray-300 hover:text-primary">My Account</a>
+          <a href="{% url 'submit_feedback' %}" class="text-gray-600 dark:text-gray-300 hover:text-primary">Rate Us</a>
+          <form action="{% url 'logout' %}" method="post" class="inline">
+            {% csrf_token %}
+            <button type="submit" class="text-gray-600 dark:text-gray-300 hover:text-primary w-full text-left">
+              Logout
+            </button>
+          </form>
+          {% else %}
+          <a href="{% url 'login' %}" class="text-gray-600 dark:text-gray-300 hover:text-primary">Login</a>
+          <a href="{% url 'signup' %}" class="text-gray-600 dark:text-gray-300 hover:text-primary">Sign Up</a>
+          {% endif %}
         </div>
       </div>
-    </header>
+    </div>
 
     {% if messages %}
     <div class="fixed top-16 left-0 right-0 z-40">
       {% for message in messages %}
-      <div
-        class="p-4 mb-2 {% if message.tags == 'success' %}bg-green-100 text-green-700{% elif message.tags == 'error' %}bg-red-100 text-red-700{% elif message.tags == 'warning' %}bg-yellow-100 text-yellow-700{% elif message.tags == 'info' %}bg-blue-100 text-blue-700{% endif %} flex justify-between items-center"
-      >
+      <div class="p-4 mb-2 {% if message.tags == 'success' %}bg-green-100 text-green-700{% elif message.tags == 'error' %}bg-red-100 text-red-700{% elif message.tags == 'warning' %}bg-yellow-100 text-yellow-700{% elif message.tags == 'info' %}bg-blue-100 text-blue-700{% endif %} flex justify-between items-center">
         <div class="flex items-center">
           <p class="font-medium">{{ message }}</p>
         </div>
-        <button
-          onclick="this.parentElement.remove()"
-          class="text-gray-500 hover:text-gray-700"
-        >
+        <button onclick="this.parentElement.remove()" class="text-gray-500 hover:text-gray-700">
           <span class="sr-only">Close</span>
           <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
-            <path
-              d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-              clip-rule="evenodd"
-              fill-rule="evenodd"
-            ></path>
+            <path d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" fill-rule="evenodd"></path>
           </svg>
         </button>
       </div>
@@ -183,60 +124,67 @@
 
     <main class="min-h-screen pt-16">{% block content %}{% endblock %}</main>
 
-    <footer class="bg-secondary text-white py-6 mt-8">
-      <div class="container mx-auto text-center px-4">
-        <p class="text-sm">&copy; 2025 PeaceMindAI. All rights reserved.</p>
-        <p class="text-sm mt-2">Your trusted companion for mental wellness</p>
+    <footer class="bg-gray-900 text-white py-12">
+      <div class="container mx-auto px-6">
+        <div class="text-center">
+          <h3 class="text-2xl font-bold mb-6">PeaceMindAI</h3>
+          <p class="text-gray-400">&copy; <span id="year">2024</span> PeaceMindAI. All rights reserved.</p>
+        </div>
       </div>
     </footer>
 
     <script>
-      // Add scroll behavior for header
-      const header = document.querySelector("header");
-      let lastScroll = 0;
+      // Mobile menu functionality
+      const navMenu = document.getElementById('nav-menu');
+      const navToggle = document.getElementById('nav-toggle');
+      const navClose = document.getElementById('nav-close');
+      const mobileLinks = document.querySelectorAll('#nav-menu a');
 
-      window.addEventListener("scroll", () => {
-        const currentScroll = window.pageYOffset;
+      function toggleMenu() {
+        navMenu.classList.toggle('hidden');
+        setTimeout(() => {
+          navMenu.classList.toggle('opacity-0');
+          navMenu.querySelector('div').classList.toggle('-translate-x-full');
+        }, 10);
+      }
 
-        if (currentScroll <= 0) {
-          header.classList.remove("header-hidden");
-          return;
-        }
+      navToggle.addEventListener('click', toggleMenu);
+      navClose.addEventListener('click', toggleMenu);
 
-        if (
-          currentScroll > lastScroll &&
-          !header.classList.contains("header-hidden")
-        ) {
-          // Scrolling down
-          header.classList.add("header-hidden");
-        } else if (
-          currentScroll < lastScroll &&
-          header.classList.contains("header-hidden")
-        ) {
-          // Scrolling up
-          header.classList.remove("header-hidden");
-        }
-
-        lastScroll = currentScroll;
+      mobileLinks.forEach(link => {
+        link.addEventListener('click', toggleMenu);
       });
 
-      // Mobile menu toggle
-      const mobileMenuButton = document.getElementById("mobile-menu-button");
-      const navMenu = document.getElementById("nav-menu");
+      // Dark mode toggle with persistence
+      const darkModeToggle = document.getElementById('darkModeToggle');
+      const darkModeIcon = darkModeToggle.querySelector('i');
+      
+      // Check for saved theme preference
+      if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+        darkModeIcon.classList.remove('bxs-moon');
+        darkModeIcon.classList.add('bxs-sun');
+      } else {
+        document.documentElement.classList.remove('dark');
+        darkModeIcon.classList.add('bxs-moon');
+        darkModeIcon.classList.remove('bxs-sun');
+      }
 
-      mobileMenuButton.addEventListener("click", () => {
-        navMenu.classList.toggle("translate-x-full");
-      });
-
-      // Close menu when clicking outside
-      document.addEventListener("click", (e) => {
-        if (
-          !navMenu.contains(e.target) &&
-          !mobileMenuButton.contains(e.target)
-        ) {
-          navMenu.classList.add("translate-x-full");
+      darkModeToggle.addEventListener('click', () => {
+        document.documentElement.classList.toggle('dark');
+        if (document.documentElement.classList.contains('dark')) {
+          localStorage.theme = 'dark';
+          darkModeIcon.classList.remove('bxs-moon');
+          darkModeIcon.classList.add('bxs-sun');
+        } else {
+          localStorage.theme = 'light';
+          darkModeIcon.classList.add('bxs-moon');
+          darkModeIcon.classList.remove('bxs-sun');
         }
       });
+
+      // Update year in footer
+      document.getElementById('year').textContent = new Date().getFullYear();
     </script>
   </body>
 </html>

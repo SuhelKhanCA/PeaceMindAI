@@ -1,163 +1,370 @@
 {% extends 'base.html' %} 
-{% load static %}
-{% load widget_tweaks %}
+{% load static %} 
+{% load widget_tweaks %} 
 {% block title %}
 <title>PeaceMindAI | Home</title>
 {% endblock %} 
 {% block content %}
-<!-- Hero Section -->
-<section class="relative h-[80vh] md:h-[90vh] flex items-center">
-  <div class="absolute inset-0 z-0">
-    <img
-      src="{% static 'images/hero.jpg' %}"
-      alt="Hero background"
-      class="w-full h-full object-cover"
-    />
-    <div class="absolute inset-0 bg-black/50"></div>
+<!-- Hero Section with Enhanced Design -->
+<section
+  class="relative min-h-[90vh] flex items-center justify-center overflow-hidden"
+>
+  <!-- Animated background gradient -->
+  <div
+    class="absolute inset-0 bg-gradient-to-br from-primary/20 via-secondary/20 to-accent/20 dark:from-primary/10 dark:via-secondary/10 dark:to-accent/10 animate-gradient"
+  ></div>
+
+  <!-- Decorative elements -->
+  <div class="absolute inset-0 overflow-hidden">
+    <div
+      class="absolute -top-40 -right-40 w-80 h-80 bg-primary/10 rounded-full blur-3xl"
+    ></div>
+    <div
+      class="absolute -bottom-40 -left-40 w-80 h-80 bg-accent/10 rounded-full blur-3xl"
+    ></div>
   </div>
 
-  <div class="relative z-10 container mx-auto px-4">
-    <div class="max-w-3xl mx-auto text-center text-white">
-      <h1 class="text-3xl md:text-5xl font-bold mb-4 md:mb-6">
-        Your AI Mental Health Companion
+  <div class="container mx-auto px-4 relative z-10">
+    <div class="max-w-4xl mx-auto text-center">
+      <h1
+        class="text-4xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent animate-gradient-x"
+      >
+        Your AI Companion for Mental Wellness
       </h1>
-      <p class="text-lg md:text-xl mb-8 md:mb-10">
-        Experience compassionate, accessible mental health support through our
-        advanced AI technology.
+      <p
+        class="text-lg md:text-xl text-gray-600 dark:text-gray-300 mb-8 leading-relaxed"
+      >
+        Experience personalized support and guidance through life's challenges
+        with our advanced AI companion.
       </p>
-      {% if user.is_authenticated %}
-      <a
-        href="{% url 'chat-lobby' %}"
-        class="inline-block px-6 md:px-8 py-3 md:py-4 bg-accent text-primary text-sm md:text-base font-semibold rounded-lg hover:bg-accent/90 transform hover:-translate-y-0.5 transition-all duration-200 shadow-lg hover:shadow-xl"
-      >
-        Start Chatting Now
-      </a>
-      {% else %}
-      <a
-        href="{% url 'signup' %}"
-        class="inline-block px-6 md:px-8 py-3 md:py-4 bg-accent text-primary text-sm md:text-base font-semibold rounded-lg hover:bg-accent/90 transform hover:-translate-y-0.5 transition-all duration-200 shadow-lg hover:shadow-xl"
-      >
-        Get Started
-      </a>
-      {% endif %}
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        {% if user.is_authenticated %}
+        <a
+          href="{% url 'chat-lobby' %}"
+          class="inline-flex items-center justify-center px-8 py-3 text-lg font-medium text-white bg-primary rounded-lg hover:bg-accent transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+        >
+          <i class="bx bx-message-square-dots mr-2"></i>
+          Start Chatting
+        </a>
+        {% else %}
+        <a
+          href="{% url 'signup' %}"
+          class="inline-flex items-center justify-center px-8 py-3 text-lg font-medium text-white bg-primary rounded-lg hover:bg-accent transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+        >
+          <i class="bx bx-user-plus mr-2"></i>
+          Get Started
+        </a>
+        <a
+          href="{% url 'login' %}"
+          class="inline-flex items-center justify-center px-8 py-3 text-lg font-medium text-primary border-2 border-primary rounded-lg hover:bg-primary hover:text-white transform hover:scale-105 transition-all duration-300"
+        >
+          <i class="bx bx-log-in mr-2"></i>
+          Sign In
+        </a>
+        {% endif %}
+      </div>
     </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div
+    class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce"
+  >
+    <i class="bx bx-chevron-down text-3xl text-primary dark:text-white"></i>
   </div>
 </section>
 
-<!-- Features Section -->
-<section class="py-12 md:py-20 bg-gray-50">
-  <div class="container mx-auto px-4 bg-white shadow-lg rounded-lg p-6 hover:shadow-xl transition-shadow duration-200 border-t-4 border-accent">
+<!-- Features Section with Enhanced Cards -->
+<section class="py-20 bg-gray-50 dark:bg-gray-900">
+  <div class="container mx-auto px-4">
     <h2
-      class="text-2xl md:text-3xl font-bold text-primary text-center mb-8 md:mb-12"
+      class="text-3xl md:text-4xl font-bold text-center mb-12 bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent"
     >
       Why Choose PeaceMindAI?
     </h2>
-
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
       <!-- Feature 1 -->
       <div
-        class="bg-highlight p-6 md:p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200"
+        class="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300"
       >
-        <div class="text-primary mb-4">
-          <svg
-            class="w-10 h-10 md:w-12 md:h-12"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-            />
-          </svg>
+        <div
+          class="w-16 h-16 bg-primary/10 dark:bg-primary/20 rounded-xl flex items-center justify-center mb-6"
+        >
+          <i class="bx bx-time text-3xl text-primary"></i>
         </div>
-        <h3 class="text-lg md:text-xl font-semibold mb-3">24/7 Availability</h3>
-        <p class="text-sm md:text-base text-gray-600">
-          Access supportive conversations whenever you need them, day or night.
+        <h3 class="text-xl font-bold mb-4 text-gray-900 dark:text-white">
+          24/7 Availability
+        </h3>
+        <p class="text-gray-600 dark:text-gray-300">
+          Get support whenever you need it, day or night. Our AI companion is
+          always ready to listen and help.
         </p>
       </div>
 
       <!-- Feature 2 -->
       <div
-        class="bg-highlight p-6 md:p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200"
+        class="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300"
       >
-        <div class="text-primary mb-4">
-          <svg
-            class="w-10 h-10 md:w-12 md:h-12"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
-            />
-          </svg>
+        <div
+          class="w-16 h-16 bg-primary/10 dark:bg-primary/20 rounded-xl flex items-center justify-center mb-6"
+        >
+          <i class="bx bx-shield text-3xl text-primary"></i>
         </div>
-        <h3 class="text-lg md:text-xl font-semibold mb-3">Private & Secure</h3>
-        <p class="text-sm md:text-base text-gray-600">
-          Your conversations are protected with enterprise-grade security and
-          privacy.
+        <h3 class="text-xl font-bold mb-4 text-gray-900 dark:text-white">
+          Private & Secure
+        </h3>
+        <p class="text-gray-600 dark:text-gray-300">
+          Your conversations are completely private and secure. We use advanced
+          encryption to protect your data.
         </p>
       </div>
 
       <!-- Feature 3 -->
       <div
-        class="bg-highlight p-6 md:p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200"
+        class="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300"
       >
-        <div class="text-primary mb-4">
-          <svg
-            class="w-10 h-10 md:w-12 md:h-12"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M13 10V3L4 14h7v7l9-11h-7z"
-            />
-          </svg>
+        <div
+          class="w-16 h-16 bg-primary/10 dark:bg-primary/20 rounded-xl flex items-center justify-center mb-6"
+        >
+          <i class="bx bx-bolt text-3xl text-primary"></i>
         </div>
-        <h3 class="text-lg md:text-xl font-semibold mb-3">Instant Support</h3>
-        <p class="text-sm md:text-base text-gray-600">
-          Get immediate responses and support when you need it most.
+        <h3 class="text-xl font-bold mb-4 text-gray-900 dark:text-white">
+          Instant Support
+        </h3>
+        <p class="text-gray-600 dark:text-gray-300">
+          Get immediate responses and guidance. No waiting, no appointments
+          needed.
         </p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Call to Action -->
-<section class="py-12 md:py-20 bg-primary">
-  <div class="container mx-auto px-4 text-center">
-    <h2 class="text-2xl md:text-3xl font-bold text-white mb-4 md:mb-6">
-      Ready to Start Your Journey?
+<!-- How It Works Section -->
+<section class="py-20">
+  <div class="container mx-auto px-4">
+    <h2
+      class="text-3xl md:text-4xl font-bold text-center mb-12 bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent"
+    >
+      How It Works
     </h2>
-    <p class="text-lg md:text-xl text-accent mb-8 md:mb-10 max-w-2xl mx-auto">
-      Join thousands of others who have found support and guidance through
-      PeaceMindAI.
-    </p>
-    {% if user.is_authenticated %}
-    <a
-      href="{% url 'chat-lobby' %}"
-      class="inline-block px-6 md:px-8 py-3 md:py-4 bg-accent text-primary text-sm md:text-base font-semibold rounded-lg hover:bg-accent/90 transform hover:-translate-y-0.5 transition-all duration-200 shadow-lg hover:shadow-xl"
-    >
-      Start Chatting
-    </a>
-    {% else %}
-    <a
-      href="{% url 'signup' %}"
-      class="inline-block px-6 md:px-8 py-3 md:py-4 bg-highlight text-primary text-sm md:text-base font-semibold rounded-lg hover:bg-accent/90 transform hover:-translate-y-0.5 transition-all duration-200 shadow-lg hover:shadow-xl"
-    >
-      Sign Up Now
-    </a>
-    {% endif %}
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <!-- Step 1 -->
+      <div class="relative">
+        <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg">
+          <div
+            class="absolute -top-4 -left-4 w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center text-xl font-bold"
+          >
+            1
+          </div>
+          <h3 class="text-xl font-bold mb-4 text-gray-900 dark:text-white mt-4">
+            Sign Up
+          </h3>
+          <p class="text-gray-600 dark:text-gray-300">
+            Create your account in minutes. It's free and easy to get started.
+          </p>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="relative">
+        <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg">
+          <div
+            class="absolute -top-4 -left-4 w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center text-xl font-bold"
+          >
+            2
+          </div>
+          <h3 class="text-xl font-bold mb-4 text-gray-900 dark:text-white mt-4">
+            Start Chatting
+          </h3>
+          <p class="text-gray-600 dark:text-gray-300">
+            Begin a conversation with our AI companion. Share your thoughts and
+            feelings.
+          </p>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="relative">
+        <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg">
+          <div
+            class="absolute -top-4 -left-4 w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center text-xl font-bold"
+          >
+            3
+          </div>
+          <h3 class="text-xl font-bold mb-4 text-gray-900 dark:text-white mt-4">
+            Get Support
+          </h3>
+          <p class="text-gray-600 dark:text-gray-300">
+            Receive personalized guidance and support whenever you need it.
+          </p>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
+
+<!-- Testimonials Section with Enhanced Design -->
+<section class="py-20 bg-gray-50 dark:bg-gray-900">
+  <div class="container mx-auto px-4">
+    <h2
+      class="text-3xl md:text-4xl font-bold text-center mb-12 bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent"
+    >
+      What Our Users Say
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <!-- Testimonial 1 -->
+      <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg">
+        <div class="flex items-center mb-4">
+          <div
+            class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center"
+          >
+            <i class="bx bxs-user text-primary text-xl"></i>
+          </div>
+          <div class="ml-4">
+            <h4 class="font-bold text-gray-900 dark:text-white">Sarah M.</h4>
+            <div class="flex text-yellow-400">
+              <i class="bx bxs-star"></i>
+              <i class="bx bxs-star"></i>
+              <i class="bx bxs-star"></i>
+              <i class="bx bxs-star"></i>
+              <i class="bx bxs-star"></i>
+            </div>
+          </div>
+        </div>
+        <p class="text-gray-600 dark:text-gray-300">
+          "PeaceMindAI has been a game-changer for my mental health. The support
+          is always there when I need it."
+        </p>
+      </div>
+
+      <!-- Testimonial 2 -->
+      <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg">
+        <div class="flex items-center mb-4">
+          <div
+            class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center"
+          >
+            <i class="bx bxs-user text-primary text-xl"></i>
+          </div>
+          <div class="ml-4">
+            <h4 class="font-bold text-gray-900 dark:text-white">John D.</h4>
+            <div class="flex text-yellow-400">
+              <i class="bx bxs-star"></i>
+              <i class="bx bxs-star"></i>
+              <i class="bx bxs-star"></i>
+              <i class="bx bxs-star"></i>
+              <i class="bx bxs-star"></i>
+            </div>
+          </div>
+        </div>
+        <p class="text-gray-600 dark:text-gray-300">
+          "The AI's responses are incredibly thoughtful and helpful. It's like
+          having a friend who's always there to listen."
+        </p>
+      </div>
+
+      <!-- Testimonial 3 -->
+      <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg">
+        <div class="flex items-center mb-4">
+          <div
+            class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center"
+          >
+            <i class="bx bxs-user text-primary text-xl"></i>
+          </div>
+          <div class="ml-4">
+            <h4 class="font-bold text-gray-900 dark:text-white">Emily R.</h4>
+            <div class="flex text-yellow-400">
+              <i class="bx bxs-star"></i>
+              <i class="bx bxs-star"></i>
+              <i class="bx bxs-star"></i>
+              <i class="bx bxs-star"></i>
+              <i class="bx bxs-star"></i>
+            </div>
+          </div>
+        </div>
+        <p class="text-gray-600 dark:text-gray-300">
+          "I love how the AI adapts to my needs and provides relevant support.
+          It's become an essential part of my daily routine."
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section with Enhanced Design -->
+<section class="py-20">
+  <div class="container mx-auto px-4">
+    <div
+      class="max-w-4xl mx-auto bg-gradient-to-r from-primary to-accent rounded-3xl p-12 text-center relative overflow-hidden"
+    >
+      <!-- Decorative elements -->
+      <div class="absolute top-0 left-0 w-full h-full">
+        <div
+          class="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl"
+        ></div>
+        <div
+          class="absolute bottom-0 left-0 w-64 h-64 bg-white/10 rounded-full blur-3xl"
+        ></div>
+      </div>
+
+      <div class="relative z-10">
+        <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">
+          Start Your Journey to Better Mental Health
+        </h2>
+        <p class="text-white/90 mb-8 text-lg">
+          Join thousands of users who have found support and guidance with
+          PeaceMindAI.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          {% if user.is_authenticated %}
+          <a
+            href="{% url 'chat-lobby' %}"
+            class="inline-flex items-center justify-center px-8 py-3 text-lg font-medium text-primary bg-white rounded-lg hover:bg-gray-100 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+          >
+            <i class="bx bx-message-square-dots mr-2"></i>
+            Start Chatting Now
+          </a>
+          {% else %}
+          <a
+            href="{% url 'signup' %}"
+            class="inline-flex items-center justify-center px-8 py-3 text-lg font-medium text-primary bg-white rounded-lg hover:bg-gray-100 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+          >
+            <i class="bx bx-user-plus mr-2"></i>
+            Get Started Free
+          </a>
+          <a
+            href="{% url 'login' %}"
+            class="inline-flex items-center justify-center px-8 py-3 text-lg font-medium text-white border-2 border-white rounded-lg hover:bg-white/10 transform hover:scale-105 transition-all duration-300"
+          >
+            <i class="bx bx-log-in mr-2"></i>
+            Sign In
+          </a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Add custom styles -->
+<style>
+  @keyframes gradient-x {
+    0%,
+    100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  .animate-gradient-x {
+    background-size: 200% 200%;
+    animation: gradient-x 15s ease infinite;
+  }
+
+  .animate-gradient {
+    animation: gradient-x 20s ease infinite;
+  }
+</style>
 {% endblock %}
