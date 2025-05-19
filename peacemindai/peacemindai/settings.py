@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 import os
+from django.utils.translation import gettext_lazy as _
 
 from dotenv import load_dotenv
 load_dotenv()
@@ -37,7 +38,6 @@ ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 INSTALLED_APPS = [
     'daphne',
     'channels',
-    'jet.dashboard',
     'jet',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -153,29 +153,137 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 JET_DEFAULT_THEME = 'light-gray'
-# JET_SIDE_MENU_COMPACT = False
+JET_SIDE_MENU_COMPACT = False
+JET_INDEX_DASHBOARD = 'dashboard.CustomIndexDashboard'
+JET_APP_INDEX_DASHBOARD = 'dashboard.CustomAppIndexDashboard'
+
 JET_THEMES = [
     {
-        'theme' : 'default',
-        'color' : '#47bac1',
-        'title' : 'default',
+        'theme': 'default',
+        'color': '#008374',  
+        'title': 'Default'
     },
     {
-        'theme' : 'green',
-        'color' : '#2E5339',
-        'title' : 'Green',
+        'theme': 'green',
+        'color': '#00796b',  
+        'title': 'Green'
     },
     {
-        'theme' : 'light-blue',
-        'color' : '#5eadde',
-        'title' : 'Light-Blue',
+        'theme': 'light-blue',
+        'color': '#5eadde',
+        'title': 'Light-Blue'
     },
     {
-        'theme' : 'light-gray',
-        'color' : '#222',
-        'title' : 'Light-gray',
+        'theme': 'light-gray',
+        'color': '#222',
+        'title': 'Light-gray'
     },
 ]
+
+# Custom JET settings
+JET_SIDE_MENU_ITEMS = [
+    {'label': _('General'), 'items': [
+        {'name': 'auth.user', 'label': _('Users'), 'url': 'admin:auth_user_changelist'},
+        {'name': 'auth.group', 'label': _('Groups'), 'url': 'admin:auth_group_changelist'},
+    ]},
+    {'label': _('Applications'), 'items': [
+        {'name': 'chat', 'label': _('Chat'), 'url': 'admin:chat_chat_changelist'},
+        {'name': 'main_app', 'label': _('Main App'), 'url': 'admin:main_app_feedback_changelist'},
+    ]},
+]
+
+JET_CHANGE_FORM_SIBLING_LINKS = True
+JET_USE_PYCOINCOIN = True
+JET_MODULE_INDEX_CHANGE_LIST = True
+JET_MODULE_YANDEX_METRIKA = False
+
+# JET UI Customization
+JET_SIDE_MENU_CUSTOM_APPS = [
+    ('auth', ['User', 'Group']),
+    ('users', ['User']),
+    ('chat', ['Chat']),
+    ('main_app', ['Feedback']),
+]
+
+JET_INDEX_DASHBOARD = 'dashboard.CustomIndexDashboard'
+JET_APP_INDEX_DASHBOARD = 'dashboard.CustomAppIndexDashboard'
+
+# JET UI Settings
+JET_UI_CUSTOMIZATIONS = {
+    'show_menu': True,
+    'show_menu_icons': True,
+    'show_menu_compact': False,
+    'show_menu_tooltips': True,
+    'show_menu_user': True,
+    'show_menu_apps': True,
+    'show_menu_recent': True,
+    'show_menu_bookmarks': True,
+    'show_menu_related': True,
+    'show_menu_related_models': True,
+    'show_menu_related_apps': True,
+    'show_menu_related_apps_models': True,
+    'show_menu_related_apps_models_actions': True,
+    'show_menu_related_apps_models_actions_icons': True,
+    'show_menu_related_apps_models_actions_tooltips': True,
+    'show_menu_related_apps_models_actions_shortcuts': True,
+    'show_menu_related_apps_models_actions_shortcuts_icons': True,
+    'show_menu_related_apps_models_actions_shortcuts_tooltips': True,
+}
+
+# JET UI Theme Settings
+JET_UI_THEME = {
+    'primary_color': '#008374',
+    'secondary_color': '#00796b',
+    'accent_color': '#f85a40',
+    'font_family': 'Poppins, sans-serif',
+    'font_size': '14px',
+    'font_weight': '400',
+    'line_height': '1.5',
+    'border_radius': '8px',
+    'box_shadow': '0 2px 4px rgba(0,0,0,0.1)',
+    'transition': 'all 0.3s ease',
+}
+
+# JET UI Layout Settings
+JET_UI_LAYOUT = {
+    'sidebar_width': '250px',
+    'sidebar_collapsed_width': '60px',
+    'content_padding': '20px',
+    'content_max_width': '1200px',
+    'content_min_width': '800px',
+    'content_margin': '0 auto',
+    'content_background': '#ffffff',
+    'content_border_radius': '8px',
+    'content_box_shadow': '0 2px 4px rgba(0,0,0,0.1)',
+}
+
+# JET UI Component Settings
+JET_UI_COMPONENTS = {
+    'button': {
+        'border_radius': '8px',
+        'padding': '8px 16px',
+        'font_weight': '500',
+        'transition': 'all 0.3s ease',
+    },
+    'card': {
+        'border_radius': '8px',
+        'box_shadow': '0 2px 4px rgba(0,0,0,0.1)',
+        'padding': '20px',
+        'margin': '10px 0',
+    },
+    'table': {
+        'border_radius': '8px',
+        'box_shadow': '0 2px 4px rgba(0,0,0,0.1)',
+        'padding': '20px',
+        'margin': '10px 0',
+    },
+    'form': {
+        'border_radius': '8px',
+        'box_shadow': '0 2px 4px rgba(0,0,0,0.1)',
+        'padding': '20px',
+        'margin': '10px 0',
+    },
+}
 
 # Cache configuration
 CACHES = {

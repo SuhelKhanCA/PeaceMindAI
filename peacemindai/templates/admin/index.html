@@ -1,0 +1,103 @@
+{% load i18n static tailwind_tags admin_list %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PeaceMindAI Admin | Dashboard</title>
+    <link rel="icon" href="https://images.pexels.com/photos/40568/medical-appointment-doctor-healthcare-40568.jpeg?auto=compress&cs=tinysrgb&w=600" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    {% tailwind_css %}
+    <style>
+    @keyframes gradient-x {
+        0%, 100% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+    }
+    .animate-gradient-x {
+        background-size: 200% 200%;
+        animation: gradient-x 15s ease infinite;
+    }
+    .animate-gradient {
+        animation: gradient-x 20s ease infinite;
+    }
+    </style>
+</head>
+<body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-white min-h-screen font-sans">
+    <!-- Admin Navbar -->
+    <header class="w-full bg-white/80 dark:bg-gray-900/80 shadow-md z-50 backdrop-blur-md">
+      <nav class="container mx-auto px-4 py-3 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <span class="text-2xl text-primary"><i class="fa-solid fa-brain"></i></span>
+          <span class="text-xl font-bold text-primary tracking-wide">PeaceMindAI Admin</span>
+        </div>
+        <a href="/" class="text-primary hover:text-accent transition-colors text-base font-medium">Go to Site</a>
+      </nav>
+    </header>
+    <section class="relative min-h-[90vh] flex items-center justify-center overflow-hidden py-20">
+        <!-- Animated background gradient -->
+        <div class="absolute inset-0 bg-gradient-to-br from-primary/20 via-secondary/20 to-accent/20 dark:from-primary/10 dark:via-secondary/10 dark:to-accent/10 animate-gradient"></div>
+        <div class="absolute inset-0 overflow-hidden">
+            <div class="absolute -top-40 -right-40 w-80 h-80 bg-primary/10 rounded-full blur-3xl"></div>
+            <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-accent/10 rounded-full blur-3xl"></div>
+        </div>
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="max-w-4xl mx-auto text-center">
+                <h1 class="text-4xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent animate-gradient-x">
+                    Admin Dashboard
+                </h1>
+                <p class="text-lg md:text-xl text-gray-600 dark:text-gray-300 mb-8 leading-relaxed">
+                    Welcome, {{ request.user.get_username }}!
+                </p>
+                <div class="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-2xl shadow-xl p-8 border border-gray-100 dark:border-gray-700">
+                    {% if app_list %}
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        {% for app in app_list %}
+                            <div class="bg-white dark:bg-gray-800/90 rounded-2xl p-8 shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 border border-gray-100 dark:border-gray-700">
+                                <div class="flex items-center gap-2 mb-4">
+                                    <span class="w-12 h-12 bg-primary/10 dark:bg-primary/20 rounded-xl flex items-center justify-center">
+                                        <i class="fa-solid fa-layer-group text-2xl text-primary"></i>
+                                    </span>
+                                    <h2 class="text-2xl font-bold text-gray-900 dark:text-white">{{ app.name }}</h2>
+                                </div>
+                                <ul class="space-y-2">
+                                    {% for model in app.models %}
+                                    <li class="flex items-center justify-between">
+                                        <span class="font-medium text-gray-800 dark:text-gray-200">{{ model.name }}</span>
+                                        <span class="flex gap-2">
+                                            {% if model.add_url %}
+                                            <a href="{{ model.add_url }}" class="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-primary rounded-lg hover:bg-accent transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
+                                                <i class="fa fa-plus mr-1"></i> Add
+                                            </a>
+                                            {% endif %}
+                                            {% if model.admin_url %}
+                                            <a href="{{ model.admin_url }}" class="inline-flex items-center px-4 py-2 text-sm font-medium text-primary border-2 border-primary rounded-lg hover:bg-primary hover:text-white transform hover:scale-105 transition-all duration-300">
+                                                <i class="fa fa-edit mr-1"></i> Change
+                                            </a>
+                                            {% endif %}
+                                        </span>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        {% endfor %}
+                        </div>
+                    {% else %}
+                        <p class="text-center text-gray-500">{% trans "You don't have permission to view or edit anything." %}</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="bg-gray-900 text-white py-8 mt-12">
+      <div class="container mx-auto px-4 text-center">
+        <h3 class="text-xl font-bold mb-2">PeaceMindAI</h3>
+        <p class="text-gray-400">&copy; <span id="year">2024</span> PeaceMindAI. All rights reserved.</p>
+      </div>
+    </footer>
+    <script>
+      document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html> 

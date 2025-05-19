@@ -1,0 +1,44 @@
+{% extends "admin/base_site.html" %}
+{% load static tailwind_tags %}
+
+{% block extrastyle %}
+{{ block.super }}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+{% tailwind_css %}
+<style>
+  #jet-sidebar, .jet-sidebar { display: none !important; }
+  body { padding-left: 0 !important; }
+</style>
+{% endblock %}
+
+{% block branding %}
+<header class="w-full bg-white/80 dark:bg-gray-900/80 shadow-md z-50 backdrop-blur-md">
+  <nav class="container mx-auto px-4 py-3 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <span class="text-2xl text-primary"><i class="fa-solid fa-brain"></i></span>
+      <span class="text-xl font-bold text-primary tracking-wide">PeaceMindAI Admin</span>
+    </div>
+    <a href="/" class="text-primary hover:text-accent transition-colors text-base font-medium">Go to Site</a>
+  </nav>
+</header>
+{% endblock %}
+
+{% block content %}
+<main class="flex-1">
+  {{ block.super }}
+</main>
+{% endblock %}
+
+{% block footer %}
+<footer class="bg-gray-900 text-white py-8 mt-12">
+  <div class="container mx-auto px-4 text-center">
+    <h3 class="text-xl font-bold mb-2">PeaceMindAI</h3>
+    <p class="text-gray-400">&copy; <span id="year">2024</span> PeaceMindAI. All rights reserved.</p>
+  </div>
+</footer>
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+{% endblock %} 

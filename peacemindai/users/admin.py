@@ -8,7 +8,7 @@ from django.contrib.auth.admin import UserAdmin
 class CustomUserAdmin(UserAdmin):
     fieldsets = (
         (None, {"fields": ( "password",)}),
-        (_("Personal Info"), {"fields": ("first_name", "last_name", "email", "role")}),
+        (_("Personal Info"), {"fields": ("first_name", "last_name", "email")}),
         (
             _("permissions"),
             {
