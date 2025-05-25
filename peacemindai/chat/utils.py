@@ -103,7 +103,7 @@ def setup_qa_chain(vector_db, llm):
     Current User Query: {question}
     
     Instructions:
-    - For the greetings word Hi, Hello, Hey , hlow, hye just greet them back with welcome
+    - For the greetings word Hi, Hello, Hey , hlow, hye greet them back in one sentence only
     - Keep response brief as possible in the beggining of conversation until user has asked 4 to 5 questions
     - Use the provided context and conversation history to provide a comprehensive and empathetic response
     - Maintain consistency with previous responses and build upon the conversation
