@@ -6,6 +6,7 @@ import asyncio
 import traceback
 from django.core.cache import cache
 from datetime import datetime, timedelta
+from langchain.memory import ConversationBufferMemory
 
 class ChatConsumer(WebsocketConsumer):
     def __init__(self, *args, **kwargs):
@@ -13,6 +14,7 @@ class ChatConsumer(WebsocketConsumer):
         self.llm = None
         self.qa_chain = None
         self.initialization_error = None
+        self.memory = None
 
     def initialize_components(self):
         """Initialize LLM components if not already initialized"""
@@ -22,6 +24,23 @@ class ChatConsumer(WebsocketConsumer):
                 self.llm = utils.initialize_llm()
                 self.docs = utils.load_documents()
                 self.vector_db = utils.create_or_load_vector_db(self.docs)
+                
+                # Initialize memory for this user
+                user_id = self.scope["user"].id
+                self.memory = ConversationBufferMemory(
+                    memory_key="chat_history",
+                    return_messages=True
+                )
+                
+                # Load previous chat history from database
+                previous_messages = ChatMessage.objects.filter(
+                    user=self.scope["user"]
+                ).order_by('timestamp')[:10]  # Get last 10 messages
+                
+                for msg in previous_messages:
+                    self.memory.chat_memory.add_user_message(msg.message)
+                    self.memory.chat_memory.add_ai_message(msg.response)
+                
                 self.qa_chain = utils.setup_qa_chain(self.vector_db, self.llm)
                 print("ChatConsumer initialization successful")
                 return True
