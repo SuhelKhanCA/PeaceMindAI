@@ -19,6 +19,7 @@ from langchain.chains import RetrievalQA
 from langchain.prompts import PromptTemplate
 from langchain_core.documents import Document
 from langchain_groq import ChatGroq
+from langchain.memory import ConversationBufferMemory
 import json
 import os
 
@@ -91,19 +92,46 @@ def create_or_load_vector_db(docs, db_path="./chroma_db"):
 def setup_qa_chain(vector_db, llm):
     retriever = vector_db.as_retriever()
     prompt_template = """
-    You are a compassionate mental health assistant.
-    Use the following context to answer the user question:
+    You are a compassionate AI Psychotherapist with expertise in mental health counseling.
+    
+    Previous Conversation History:
+    {chat_history}
+    
+    Context from Knowledge Base:
     {context}
-
-    User: {question}
-    Chatbot:
+    
+    Current User Query: {question}
+    
+    Instructions:
+    - For the greetings word Hi, Hello, Hey , hlow, hye just greet them back with welcome
+    - Keep response brief as possible in the beggining of conversation until user has asked 4 to 5 questions
+    - Use the provided context and conversation history to provide a comprehensive and empathetic response
+    - Maintain consistency with previous responses and build upon the conversation
+    - If the context doesn't contain relevant information, rely on your training as a mental health professional
+    - Always maintain a supportive and non-judgmental tone
+    - If the user is in crisis or needs immediate help, provide appropriate crisis resources
+    - Keep responses focused on mental health and emotional well-being
+    - Ensure responses are clear, actionable, and helpful
+    
+    Response:
     """
-    PROMPT = PromptTemplate(template=prompt_template, input_variables=["context", "question"])
-    qa_chain = RetrievalQA.from_chain_type(
+    PROMPT = PromptTemplate(template=prompt_template, input_variables=["context", "question", "chat_history"])
+    
+    # Create a memory object to store chat history
+    memory = ConversationBufferMemory(
+        memory_key="chat_history",
+        input_key="question",
+        return_messages=True
+    )
+    
+    # Create a custom chain that combines retrieval and memory
+    from langchain.chains import ConversationalRetrievalChain
+    
+    qa_chain = ConversationalRetrievalChain.from_llm(
         llm=llm,
-        chain_type="stuff",
         retriever=retriever,
-        chain_type_kwargs={"prompt": PROMPT}
+        memory=memory,
+        combine_docs_chain_kwargs={"prompt": PROMPT}
     )
     return qa_chain
 
