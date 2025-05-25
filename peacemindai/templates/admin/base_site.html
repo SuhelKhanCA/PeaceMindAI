@@ -1,32 +1,51 @@
 {% extends "admin/base_site.html" %}
-{% load static tailwind_tags %}
+{% load static %}
 
 {% block extrastyle %}
 {{ block.super }}
+<!-- Poppins font -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-{% tailwind_css %}
-<style>
-  #jet-sidebar, .jet-sidebar { display: none !important; }
-  body { padding-left: 0 !important; }
-</style>
+<!-- Tailwind CDN and color config -->
+<script src="https://cdn.tailwindcss.com" defer></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#008374',
+            secondary: '#00796b',
+            accent: '#f85a40'
+          },
+          fontFamily: {
+            sans: ['Poppins', 'sans-serif']
+          }
+        }
+      }
+    }
+  });
+</script>
+<!-- Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
 {% endblock %}
 
 {% block branding %}
-<header class="w-full bg-white/80 dark:bg-gray-900/80 shadow-md z-50 backdrop-blur-md">
-  <nav class="container mx-auto px-4 py-3 flex items-center justify-between">
-    <div class="flex items-center gap-3">
-      <span class="text-2xl text-primary"><i class="fa-solid fa-brain"></i></span>
-      <span class="text-xl font-bold text-primary tracking-wide">PeaceMindAI Admin</span>
-    </div>
+<header class="w-full bg-white dark:bg-gray-900 shadow-md z-50">
+  <nav class="container mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="/admin/" class="text-2xl font-bold text-primary flex items-center gap-2">
+      <i class="fa-solid fa-brain"></i> PeaceMindAI Admin
+    </a>
     <a href="/" class="text-primary hover:text-accent transition-colors text-base font-medium">Go to Site</a>
   </nav>
 </header>
 {% endblock %}
 
 {% block content %}
-<main class="flex-1">
+<main class="container mx-auto py-10">
   {{ block.super }}
 </main>
 {% endblock %}
@@ -41,4 +60,4 @@
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
 </script>
-{% endblock %} 
+{% endblock %}
