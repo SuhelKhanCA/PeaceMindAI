@@ -49,7 +49,7 @@ def load_documents():
         content = f"Intent: {intent['tag']}\nUser Patterns: {patterns}\nBot Responses: {responses}"
         docs.append(Document(page_content=content, metadata={"source": "intents"}))
 
-# Load and clean Huggingface mental health data
+    # Load and clean Huggingface mental health data
     loader_hf = JSONLoader(
         file_path=file_path2,
         jq_schema=".rows[]",
@@ -103,7 +103,6 @@ def setup_qa_chain(vector_db, llm):
     Current User Query: {question}
     
     Instructions:
-    - For the greetings word Hi, Hello, Hey , hlow, hye greet them back in one sentence only
     - Keep response brief as possible in the beggining of conversation until user has asked 4 to 5 questions
     - Use the provided context and conversation history to provide a comprehensive and empathetic response
     - Maintain consistency with previous responses and build upon the conversation

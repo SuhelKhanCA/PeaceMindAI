@@ -35,7 +35,7 @@ class ChatConsumer(WebsocketConsumer):
                 # Load previous chat history from database
                 previous_messages = ChatMessage.objects.filter(
                     user=self.scope["user"]
-                ).order_by('timestamp')[:10]  # Get last 10 messages
+                ).order_by('timestamp')[:50]  # Get last 50 messages
                 
                 for msg in previous_messages:
                     self.memory.chat_memory.add_user_message(msg.message)
