@@ -1,5 +1,7 @@
 # PeaceMindAI
 
+![image](https://github.com/user-attachments/assets/72952066-e01f-4531-8971-6159b20e4b49)
+
 PeaceMindAI is an AI-powered mental health support platform designed to offer accessible, personalized, and stigma-free emotional care. Built around an advanced Large Language Model (LLM) chatbot, the system helps individuals manage stress, anxiety, depression, and PTSD through meaningful conversations, cognitive behavioral therapy techniques, mindfulness practices, and supportive counseling.
 
 ## Table of Contents
@@ -92,7 +94,7 @@ The platform aims to address the growing need for accessible mental health suppo
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/PeaceMindAI.git
+git clone https://github.com/suhelkhanca/PeaceMindAI.git
 cd PeaceMindAI
 ```
 
@@ -406,6 +408,28 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 - Django and Python communities
 
 ## Screenshots
+
+### New UI
+
+![Home-page](https://github.com/user-attachments/assets/cc0d79f0-4291-4248-a999-5707b4fee52b)
+
+![register-page](https://github.com/user-attachments/assets/3cbdbc2f-272b-4eab-a0c5-a575ff46991e)
+
+![login](https://github.com/user-attachments/assets/c8295a9d-72d2-424a-be55-dabfb028d6c7)
+
+![about](https://github.com/user-attachments/assets/f1241d1d-5622-4000-b1f1-c39eaff01830)
+
+![my-account](https://github.com/user-attachments/assets/d8080f09-f8dd-4aab-9f35-e4148ded8c43)
+
+![feedback](https://github.com/user-attachments/assets/39dfae85-a7fb-4a44-9c20-50be70640f09)
+
+![chat](https://github.com/user-attachments/assets/087a6120-5609-49ab-aefb-7c85b76ea03c)
+
+![image](https://github.com/user-attachments/assets/87bc3b8d-2c19-4075-9815-2c24e297559b)
+
+![image](https://github.com/user-attachments/assets/7636c03d-f200-41e6-a1f4-636b7fbe0d33)
+
+![image](https://github.com/user-attachments/assets/0e6ed37c-7144-4946-9ab2-a267229e52f5)
 
 ### Home Page
 ![alt text](snapshot/image1.png)
